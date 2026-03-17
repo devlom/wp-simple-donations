@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: WP Simple Donations
+Plugin Name: Simple Donations
 Plugin URI: http://wpsimpledonations.com/
 Description: Crowdfunding and donation plugin with recurring payments, goals, rewards, and multiple payment gateways.
 Version: 2.6.6

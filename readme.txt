@@ -1,4 +1,4 @@
-=== WP Simple Donations ===
+=== Simple Donations ===
 Contributors: hexplor, devlom
 Donate link: https://wpsimpledonations.com/
 Tags: donations, fundraising, crowdfunding, paypal, payu, przelewy24
