@@ -5,7 +5,7 @@ Tags: donations, fundraising, crowdfunding, paypal, payu, przelewy24
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 8.3
-Stable tag: 2.6.6
+Stable tag: 2.6.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,12 @@ On GitHub: [github.com/devlom/wp-simple-donations/issues](https://github.com/dev
 
 == Changelog ==
 
+= 2.6.7 =
+* Added idempotency protection for P24 and PayU webhook notifications
+* Fixed i18n text domain for WordPress.org compliance
+* Renamed display name to "Simple Donations" per WordPress.org guidelines
+* Added WordPress.org assets and readme.txt
+
 = 2.6.6 =
 * New: PayU payment gateway (REST API v2.1, OAuth2, webhook notifications)
 * New: PayPal rewritten to modern REST API Orders v2 + JS SDK (popup checkout)
@@ -138,6 +144,9 @@ On GitHub: [github.com/devlom/wp-simple-donations/issues](https://github.com/dev
 * Removed BuddyPress integration
 
 == Upgrade Notice ==
+
+= 2.6.7 =
+Idempotency protection for webhooks, WordPress.org compliance fixes.
 
 = 2.6.6 =
 Major update: new PayU gateway, rewritten PayPal (popup checkout), modern CSS, security fixes. Old CSS themes and Dotpay gateway removed — settings migrated automatically.

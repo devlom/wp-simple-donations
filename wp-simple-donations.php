@@ -3,7 +3,7 @@
 Plugin Name: Simple Donations
 Plugin URI: http://wpsimpledonations.com/
 Description: Crowdfunding and donation plugin with recurring payments, goals, rewards, and multiple payment gateways.
-Version: 2.6.6
+Version: 2.6.7
 Text Domain: wdf
 Author: Karol Orzeł
 Author URI: https://devlom.com
@@ -70,7 +70,7 @@ if(isset($_POST['wdf_reset']) && current_user_can('wdf_edit_settings') && isset(
 
 class WDF {
 	function _vars() {
-		$this->version = '2.6.6';
+		$this->version = '2.6.7';
 		$this->defaults = array(
 			'currency' => 'USD',
 			'dir_slug' => __('fundraisers','wdf'),
