@@ -845,12 +845,22 @@ if(!function_exists('wdf_pledge_button')) {
 			$content .= '<div class="wdf_gateway_buttons">';
 
 			if (is_array($wdf_gateway_active_plugins)) {
+				// Gateway logos (relative to plugin URL)
+				$gateway_logos = apply_filters('wdf_gateway_logos', array(
+					'przelewy24' => WDF_PLUGIN_URL . '/img/przelewy24-logo.png',
+				));
+
 				foreach ($wdf_gateway_active_plugins as $gw_code => $gw_obj) {
 					if ($gw_code === 'paypal') {
 						// PayPal JS SDK renders its own button
 						$content .= '<div id="wdf-paypal-button-container" class="wdf_paypal_button_wrap"></div>';
+					} elseif (isset($gateway_logos[$gw_code])) {
+						// Button with logo image
+						$content .= '<div class="wdf_send_donation wdf_gateway_btn" data-gateway="' . esc_attr($gw_code) . '">';
+						$content .= '<img src="' . esc_url($gateway_logos[$gw_code]) . '" alt="' . esc_attr($gw_obj->public_name) . '" class="wdf_gateway_logo" />';
+						$content .= '</div>';
 					} else {
-						// Dedicated button for each non-PayPal gateway
+						// Text-only button
 						$gw_label = apply_filters('wdf_gateway_button_label_' . $gw_code, $gw_obj->public_name);
 						$content .= '<div class="wdf_send_donation wdf_gateway_btn" data-gateway="' . esc_attr($gw_code) . '">' . esc_html($gw_label) . '</div>';
 					}

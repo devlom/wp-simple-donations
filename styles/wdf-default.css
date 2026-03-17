@@ -275,12 +275,23 @@
 	box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
+.wdf-default .wdf_gateway_logo {
+	height: 26px;
+	width: auto;
+	display: block;
+}
+
 .wdf-default .wdf_gateway_btn[data-gateway="przelewy24"] {
 	background: #d42227;
+	padding: 0.6rem 1.5rem;
 }
 
 .wdf-default .wdf_gateway_btn[data-gateway="przelewy24"]:hover {
 	background: #b81d21;
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="przelewy24"] .wdf_gateway_logo {
+	filter: brightness(0) invert(1);
 }
 
 .wdf-default .wdf_gateway_btn[data-gateway="payu"] {
