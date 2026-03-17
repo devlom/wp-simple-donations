@@ -53,7 +53,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
 
 			wp_enqueue_script(
 				'paypal-sdk',
-				'https://www.paypal.com/sdk/js?client-id=' . urlencode($this->client_id) . '&currency=' . urlencode($currency) . '&intent=capture&components=buttons',
+				'https://www.paypal.com/sdk/js?client-id=' . urlencode($this->client_id) . '&currency=' . urlencode($currency) . '&intent=capture&components=buttons&disable-funding=card,blik,p24,bancontact,sofort,mybank,eps,giropay,ideal,sepa',
 				array(),
 				null,
 				true

@@ -856,9 +856,18 @@ if(!function_exists('wdf_pledge_button')) {
 			$content .= '<input type="hidden" name="funder_id" value="'.$post_id.'" />';
 			$content .= '<input id="wdf_step" type="hidden" name="wdf_step" value="" />';
 			$pledge_label = apply_filters( 'wdf_donate_button_text', esc_attr($settings['donation_labels']['action_name']) );
-			$content .= '<div class="wdf_send_donation usual"><i class="fa fa-credit-card" aria-hidden="true"></i> '.$pledge_label.'</div>';
-			// PayPal JS SDK renders its own button here
 			global $wdf_gateway_active_plugins;
+			// Show form submit button only if there's an active non-PayPal gateway
+			$has_non_paypal = false;
+			if (is_array($wdf_gateway_active_plugins)) {
+				foreach ($wdf_gateway_active_plugins as $gw_code => $gw_obj) {
+					if ($gw_code !== 'paypal') { $has_non_paypal = true; break; }
+				}
+			}
+			if ($has_non_paypal) {
+				$content .= '<div class="wdf_send_donation usual"><i class="fa fa-credit-card" aria-hidden="true"></i> '.$pledge_label.'</div>';
+			}
+			// PayPal JS SDK renders its own button here
 			if (isset($wdf_gateway_active_plugins['paypal'])) {
 				$content .= '<div id="wdf-paypal-button-container" class="wdf_paypal_button_wrap"></div>';
 			}
