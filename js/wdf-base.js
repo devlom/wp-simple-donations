@@ -63,6 +63,7 @@ jQuery(document).ready( function($) {
 	});
 
 	// Handle donation button clicks — sets gateway and submits form
+	// (PayPal uses its own JS SDK button, this handles other gateways)
 	$(document).on('click', '.wdf_send_donation', function() {
 		var $btn = $(this);
 		var $form = $btn.closest('form.wdf_checkout_form');
@@ -71,16 +72,11 @@ jQuery(document).ready( function($) {
 		}
 		if (!$form.length) return;
 
-		// Determine gateway from button class
-		if ($btn.hasClass('paypal')) {
-			$form.find('input[name="wdf_gateway"]').val('paypal');
-		} else {
-			// Use the selected radio, or first available gateway
-			var $radio = $form.find('input[name="wdf_gateway"]:checked');
-			if (!$radio.length) {
-				$radio = $form.find('input[name="wdf_gateway"]').first();
-				$radio.prop('checked', true);
-			}
+		// Use the selected radio, or first available non-PayPal gateway
+		var $radio = $form.find('input[name="wdf_gateway"]:checked');
+		if (!$radio.length) {
+			$radio = $form.find('input[name="wdf_gateway"]').first();
+			$radio.prop('checked', true);
 		}
 
 		// Set step and add submit marker

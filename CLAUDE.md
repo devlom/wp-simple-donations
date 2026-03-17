@@ -35,7 +35,7 @@ msgfmt -o languages/wdf-pl_PL.mo languages/wdf-pl_PL.po
 
 Abstract base: `lib/classes/class.gateway.php` (`WDF_Gateway`). Implementations in `lib/gateways/`:
 - `przelewy24.php` — Przelewy24 REST API v1 (primary gateway for Polish payments). Uses Basic Auth (posId:apiKey), SHA-384 signatures with CRC key. Flow: register transaction → redirect to P24 → IPN notification → verify. Stores inter-step data in WP transients (`wdf_p24_{session_id}`).
-- `paypal.php` — PayPal Adaptive Payments + IPN
+- `paypal.php` — PayPal REST API (Orders v2) + JS SDK. OAuth2 auth (client_id:client_secret), popup checkout, synchronous capture via AJAX. Transient storage (`wdf_paypal_{order_id}`). No IPN/webhooks needed.
 - `manual.php` — Offline/manual processing
 
 Gateways are loaded dynamically. Payment processing fires action hooks: `wdf_gateway_process_{type}_{gateway}`. State is managed via `$_SESSION` variables (`funder_id`, `wdf_pledge`, `wdf_gateway`, `wdf_recurring`, etc.).

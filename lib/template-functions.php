@@ -857,7 +857,11 @@ if(!function_exists('wdf_pledge_button')) {
 			$content .= '<input id="wdf_step" type="hidden" name="wdf_step" value="" />';
 			$pledge_label = apply_filters( 'wdf_donate_button_text', esc_attr($settings['donation_labels']['action_name']) );
 			$content .= '<div class="wdf_send_donation usual"><i class="fa fa-credit-card" aria-hidden="true"></i> '.$pledge_label.'</div>';
-			$content .= '<div class="wdf_send_donation paypal"><i class="fa fa-cc-paypal" aria-hidden="true"></i> PayPal</div>';
+			// PayPal JS SDK renders its own button here
+			global $wdf_gateway_active_plugins;
+			if (isset($wdf_gateway_active_plugins['paypal'])) {
+				$content .= '<div id="wdf-paypal-button-container" class="wdf_paypal_button_wrap"></div>';
+			}
 		}
 
 		$content = apply_filters('wdf_pledge_button', $content, $post_id);

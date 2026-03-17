@@ -243,6 +243,12 @@
 	font-size: 1.1em;
 }
 
+/* === PayPal JS SDK Button === */
+.wdf-default .wdf_paypal_button_wrap {
+	margin-top: 0.75rem;
+	max-width: 300px;
+}
+
 /* === Backer Button (link to checkout) === */
 .wdf-default .wdf_backer_button {
 	margin: var(--wdf-spacing) 0;
