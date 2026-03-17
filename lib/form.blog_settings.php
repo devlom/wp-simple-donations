@@ -16,10 +16,11 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 	if( defined('WDF_ALLOW_RESET') && WDF_ALLOW_RESET == true )
 		$tabs['reset'] = __('Reset','wdf');
 
-	if(!isset($_GET['tab']))
-		$active_tab = 'payments';
+	$allowed_tabs = array_keys($tabs);
+	if(isset($_GET['tab']) && in_array($_GET['tab'], $allowed_tabs, true))
+		$active_tab = sanitize_key($_GET['tab']);
 	else
-		$active_tab = $_GET['tab'];
+		$active_tab = 'payments';
 
 	$tabs = apply_filters('wdf_settings_tabs',$tabs);
 	$active_tab = apply_filters('wdf_settings_active_tab',$active_tab);

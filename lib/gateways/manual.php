@@ -35,12 +35,12 @@ if(!class_exists('WDF_Gateway_Manual')) {
 			$content .= '<p class="wdf_manual_payment_form_basic_message wdf_payment_form_basic_message">'.__('Please fill out all details','wdf').'</p>';
 
 			$content .= '<p class="wdf_manual_payment_form_basic_info wdf_payment_form_basic_info">';
-				$content .= '<label for="first_name class="wdf_first_name">'.__('First Name','wdf').':</label><br />';
-				$content .= '<input type="text" class="wdf_first_name" name="first_name" value="'.( isset($_POST['first_name']) ? esc_attr($_POST['first_name']) : '' ).'" /><br />';
-				$content .= '<label for="last_name class="wdf_last_name">'.__('Last Name','wdf').':</label><br />';
-				$content .= '<input type="text" class="wdf_last_name" name="last_name" value="'.( isset($_POST['last_name']) ? esc_attr($_POST['last_name']) : '' ).'" /><br />';
+				$content .= '<label for="first_name" class="wdf_first_name">'.__('First Name','wdf').':</label><br />';
+				$content .= '<input type="text" class="wdf_first_name" id="first_name" name="first_name" value="'.( isset($_POST['first_name']) ? esc_attr($_POST['first_name']) : '' ).'" /><br />';
+				$content .= '<label for="last_name" class="wdf_last_name">'.__('Last Name','wdf').':</label><br />';
+				$content .= '<input type="text" class="wdf_last_name" id="last_name" name="last_name" value="'.( isset($_POST['last_name']) ? esc_attr($_POST['last_name']) : '' ).'" /><br />';
 				$content .= '<label for="e-mail" class="wdf_email">'.__('E-mail','wdf').':</label><br />';
-				$content .= '<input type="text" class="wdf_email" name="e-mail" value="'.( isset($_POST['e-mail']) ? esc_attr($_POST['e-mail']) : '') .'" />';
+				$content .= '<input type="email" class="wdf_email" id="e-mail" name="e-mail" value="'.( isset($_POST['e-mail']) ? esc_attr($_POST['e-mail']) : '') .'" />';
 			$content .= '</p>';
 
 			$funder_id = get_the_ID();
@@ -74,9 +74,10 @@ if(!class_exists('WDF_Gateway_Manual')) {
 
 		function process_simple() {
 			if( !empty($_POST['first_name']) && !empty($_POST['last_name']) &&
-				!empty($_POST['e-mail']) && preg_match("/^[-+\\.0-9=a-z_]+@([-0-9a-z]+\\.)+([0-9a-z]){2,4}$/i", $_POST['e-mail']) &&
-				(isset($_POST['city']) && !empty($_POST['address1']) && !empty($_POST['city'])) || !isset($_POST['city']) &&
-				(isset($_POST['country']) && !empty($_POST['country'])) || !isset($_POST['country'])
+				!empty($_POST['e-mail']) && is_email($_POST['e-mail']) &&
+				((!isset($_POST['city']) && !isset($_POST['country'])) ||
+				 (isset($_POST['city']) && !empty($_POST['address1']) && !empty($_POST['city']) &&
+				  isset($_POST['country']) && !empty($_POST['country'])))
 			) {
 				global $wdf;
 				$settings = get_option('wdf_settings');
@@ -95,9 +96,9 @@ if(!class_exists('WDF_Gateway_Manual')) {
 					$transaction['gross'] = $_SESSION['wdf_pledge'];
 					$transaction['type'] = 'simple';
 					$transaction['currency_code'] = ( isset($settings['currency']) ? $settings['currency'] : 'USD');
-					$transaction['first_name'] = (isset($_POST['first_name']) ? $_POST['first_name'] : '' );
-					$transaction['last_name'] = (isset($_POST['last_name']) ? $_POST['last_name'] : '' );
-					$transaction['payer_email'] = (isset($_POST['e-mail']) ? $_POST['e-mail'] : '' );
+					$transaction['first_name'] = sanitize_text_field($_POST['first_name'] ?? '');
+					$transaction['last_name'] = sanitize_text_field($_POST['last_name'] ?? '');
+					$transaction['payer_email'] = sanitize_email($_POST['e-mail'] ?? '');
 					$transaction['gateway_public'] = $this->public_name;
 					$transaction['gateway'] = $this->plugin_name;
 					$status = (isset($settings['manual']['status']) ? $settings['manual']['status'] : 'wdf_complete' );
@@ -109,12 +110,12 @@ if(!class_exists('WDF_Gateway_Manual')) {
 
 					$collect_address = get_post_meta($funder_id,'wdf_collect_address', true);
 					if($collect_address) {
-						$transaction['country'] = (isset($_POST['country']) ? $_POST['country'] : '' );
-						$transaction['address1'] = (isset($_POST['address1']) ? $_POST['address1'] : '' );
-						$transaction['address2'] = (isset($_POST['address2']) ? $_POST['address2'] : '' );
-						$transaction['city'] = (isset($_POST['city']) ? $_POST['city'] : '' );
-						$transaction['state'] = (isset($_POST['state']) ? $_POST['state'] : '' );
-						$transaction['zip'] = (isset($_POST['zip']) ? $_POST['zip'] : '' );
+						$transaction['country'] = sanitize_text_field($_POST['country'] ?? '');
+						$transaction['address1'] = sanitize_text_field($_POST['address1'] ?? '');
+						$transaction['address2'] = sanitize_text_field($_POST['address2'] ?? '');
+						$transaction['city'] = sanitize_text_field($_POST['city'] ?? '');
+						$transaction['state'] = sanitize_text_field($_POST['state'] ?? '');
+						$transaction['zip'] = sanitize_text_field($_POST['zip'] ?? '');
 					}
 
 
@@ -144,7 +145,7 @@ if(!class_exists('WDF_Gateway_Manual')) {
 			$settings = get_option('wdf_settings');
 
 			$content = '<div class="manual_transaction_info">';
-			$content .= html_entity_decode(stripslashes($settings['manual']['after_info']));
+			$content .= wp_kses_post(stripslashes($settings['manual']['after_info']));
 			$content .= '</div>';
 			return $content;
 		}

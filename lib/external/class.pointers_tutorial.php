@@ -363,7 +363,9 @@ if ( !class_exists( 'Pointer_Tutorial' ) ) {
 		 *
 		 */
 		function ajax_dismiss() {
-			if ( !is_numeric($_POST['pointer']) )
+			check_ajax_referer('wdf_tutorial_pointer', '_nonce');
+
+			if ( !isset($_POST['pointer']) || !is_numeric($_POST['pointer']) )
 				die( '0' );
 
 			if ('next' == $_POST['step']) {
@@ -461,6 +463,7 @@ if ( !class_exists( 'Pointer_Tutorial' ) ) {
 				$close_name = __('Dismiss', $this->textdomain);
 				$close_title = sprintf(__('Dismiss %s', $this->textdomain), $this->tutorial_name);
 				?>
+				var wdfTutorialNonce = '<?php echo wp_create_nonce("wdf_tutorial_pointer"); ?>';
 				var options<?php echo $pointer_id; ?> = <?php echo json_encode( $args ); ?>;
 
 				options<?php echo $pointer_id; ?> = $.extend( options<?php echo $pointer_id; ?>, {
@@ -468,7 +471,8 @@ if ( !class_exists( 'Pointer_Tutorial' ) ) {
 						$.post( ajaxurl, {
 							pointer: '<?php echo $pointer_id; ?>',
 							step: 'next',
-							action: 'dismiss-<?php echo $this->tutorial_key; ?>-pointer'
+							action: 'dismiss-<?php echo $this->tutorial_key; ?>-pointer',
+							_nonce: wdfTutorialNonce
 						}<?php echo $next_link; ?>);
 						<?php echo $next_pointer; ?>
 					},
@@ -476,7 +480,8 @@ if ( !class_exists( 'Pointer_Tutorial' ) ) {
 						$.post( ajaxurl, {
 							pointer: '<?php echo $pointer_id; ?>',
 							step: 'prev',
-							action: 'dismiss-<?php echo $this->tutorial_key; ?>-pointer'
+							action: 'dismiss-<?php echo $this->tutorial_key; ?>-pointer',
+							_nonce: wdfTutorialNonce
 						}<?php echo $prev_link; ?>);
 						<?php echo $prev_pointer; ?>
 					},
@@ -484,7 +489,8 @@ if ( !class_exists( 'Pointer_Tutorial' ) ) {
 						$.post( ajaxurl, {
 							pointer: '<?php echo $pointer_id; ?>',
 							step: 'close',
-							action: 'dismiss-<?php echo $this->tutorial_key; ?>-pointer'
+							action: 'dismiss-<?php echo $this->tutorial_key; ?>-pointer',
+							_nonce: wdfTutorialNonce
 						});
 					},
 					buttons: function( event, t ) {

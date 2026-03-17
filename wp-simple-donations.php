@@ -708,7 +708,9 @@ class WDF {
 	function load_gateway_plugins() {
 
 		if(isset($_POST['wdf_settings']) && is_array($_POST['wdf_settings'])) {
-			$this->save_settings($_POST['wdf_settings']);
+			if(isset($_POST['wdf_nonce']) && wp_verify_nonce($_POST['wdf_nonce'], '_wdf_settings_nonce')) {
+				$this->save_settings($_POST['wdf_settings']);
+			}
 		}
 
 		//get gateway plugins dir
@@ -1252,11 +1254,9 @@ class WDF {
 		global $wp_roles;
 		$die = false;
 
-		if(isset($_POST['wdf_nonce'])) {
-			$nonce = $_POST['wdf_nonce'];
-		}
+		$nonce = isset($_POST['wdf_nonce']) ? $_POST['wdf_nonce'] : '';
 		if (!wp_verify_nonce($nonce,'_wdf_settings_nonce') ) {
-			$this->create_error(__('Security Check Failed.  Whatchu doing??','wdf'), 'wdf_nonce');
+			$this->create_error(__('Security verification failed. Please try again.','wdf'), 'wdf_nonce');
 			$die = true;
 		}
 
@@ -2084,7 +2084,7 @@ class WDF {
 		$count = true;
 		while ($count) { //make sure it's unique
 			$wdf_pledge_id = substr(sha1(uniqid('')), rand(1, 24), 12);
-			$count = $wpdb->get_var("SELECT COUNT(*) FROM " . $wpdb->posts . " WHERE post_title = '" . $wdf_pledge_id . "' AND post_type = 'donation'");
+			$count = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->posts} WHERE post_title = %s AND post_type = 'donation'", $wdf_pledge_id));
 		}
 
 		$wdf_pledge_id = apply_filters( 'wdf_pledge_id', $wdf_pledge_id ); //Very important to make sure order numbers are unique and not sequential if filtering

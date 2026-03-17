@@ -13,6 +13,16 @@ Added JS click handler for donation submit buttons
 Added style wrapper to gateway payment form (checkout step 2)
 Fixed potential PHP crash when selected gateway not in active plugins
 Auto-migration: old CSS themes → wdf-default, per-fundraiser style meta, Dotpay removal from settings
+Security: fixed SQL injection in generate_pledge_id() — use $wpdb->prepare()
+Security: added CSRF protection (nonce check) before processing settings in load_gateway_plugins()
+Security: added nonce verification to tutorial AJAX dismiss handler
+Security: fixed undefined $nonce variable in save_settings()
+Security: replaced html_entity_decode() with wp_kses_post() in manual gateway payment info
+Security: sanitized all transaction fields in manual gateway (name, email, address) with sanitize_text_field/sanitize_email
+Security: validated and whitelisted $_GET['tab'] parameter in settings form
+Fixed broken HTML label attributes (missing closing quote) in manual gateway payment form
+Replaced custom email regex with WordPress is_email() in manual gateway
+Fixed operator precedence bug in manual gateway address validation logic
 
 = 2.6.5 =
 Rebranded from WPMU DEV Fundraising to WP Simple Donations
