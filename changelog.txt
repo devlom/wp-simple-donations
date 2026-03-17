@@ -5,6 +5,7 @@ Original authors: WPMUDEV (Maniu, Cole Stevenson, Jose Jaureguiberry)
 == Changelog ==
 
 = 2.6.6 =
+Added PayU payment gateway — REST API v2.1, OAuth2 authentication, MD5 webhook signature verification, sandbox/live toggle
 Rewrote PayPal gateway from legacy Standard Payments + IPN to modern REST API (Orders v2) + JS SDK — popup checkout instead of redirect, config via Client ID + Secret instead of email + IPN URL
 Removed PayPal Adaptive Payments (deprecated by PayPal in 2017, shut down in 2022) and IPN verification
 New modern CSS style system — replaced 5 legacy themes (basic, dark, fresh, minimal, note) with single responsive wdf-default style using CSS custom properties, flexbox layout, and card-based design
