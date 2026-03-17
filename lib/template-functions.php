@@ -575,26 +575,9 @@ if(!function_exists('wdf_gateway_choices')) {
 			if($echo) { echo $content; return; } else { return $content; }
 		}
 
-		if(count($wdf_gateway_active_plugins) == 1 ) {
-			$gateway = array_keys($wdf_gateway_active_plugins);
-			$gateway = $gateway[0];
-			$content .= '<input type="hidden" name="wdf_step" value="gateway" />';
-			$content .= '<input type="hidden" name="wdf_gateway" value="'.$gateway.'" />';
-		} elseif(count($wdf_gateway_active_plugins) > 1) {
-			$getaway_names = array_keys($wdf_gateway_active_plugins);
-			if(!in_array($default, $getaway_names))
-				$default = 'paypal';
-
-			$content .= '<input type="hidden" name="wdf_step" value="gateway" />';
-			$content .= '<div class="wdf_payment_options_title">'.__('Payment Options','wdf').'</div>';
-			$content .= '<div class="wdf_payment_options">';
-			foreach($wdf_gateway_active_plugins as $gateway => $data) {
-				$content .= '<label> <input type="radio" name="wdf_gateway" value="'.$gateway.'" '.checked( $gateway, $default, false ).'/> '.$data->public_name.'</label> ';
-			}
-			$content .= '</div>';
-		} else {
-			$content .= __('No Payment Gateways Have Been Enabled', 'wdf');
-		}
+		// Hidden inputs — gateway is set by JS when user clicks a dedicated button
+		$content .= '<input type="hidden" name="wdf_step" value="gateway" />';
+		$content .= '<input type="hidden" name="wdf_gateway" value="" />';
 
 		if($echo) {echo $content;} else {return $content;}
 	}
@@ -857,20 +840,24 @@ if(!function_exists('wdf_pledge_button')) {
 			$content .= '<input id="wdf_step" type="hidden" name="wdf_step" value="" />';
 			$pledge_label = apply_filters( 'wdf_donate_button_text', esc_attr($settings['donation_labels']['action_name']) );
 			global $wdf_gateway_active_plugins;
-			// Show form submit button only if there's an active non-PayPal gateway
-			$has_non_paypal = false;
+
+			// Render dedicated button per active gateway
+			$content .= '<div class="wdf_gateway_buttons">';
+
 			if (is_array($wdf_gateway_active_plugins)) {
 				foreach ($wdf_gateway_active_plugins as $gw_code => $gw_obj) {
-					if ($gw_code !== 'paypal') { $has_non_paypal = true; break; }
+					if ($gw_code === 'paypal') {
+						// PayPal JS SDK renders its own button
+						$content .= '<div id="wdf-paypal-button-container" class="wdf_paypal_button_wrap"></div>';
+					} else {
+						// Dedicated button for each non-PayPal gateway
+						$gw_label = apply_filters('wdf_gateway_button_label_' . $gw_code, $gw_obj->public_name);
+						$content .= '<div class="wdf_send_donation wdf_gateway_btn" data-gateway="' . esc_attr($gw_code) . '">' . esc_html($gw_label) . '</div>';
+					}
 				}
 			}
-			if ($has_non_paypal) {
-				$content .= '<div class="wdf_send_donation usual"><i class="fa fa-credit-card" aria-hidden="true"></i> '.$pledge_label.'</div>';
-			}
-			// PayPal JS SDK renders its own button here
-			if (isset($wdf_gateway_active_plugins['paypal'])) {
-				$content .= '<div id="wdf-paypal-button-container" class="wdf_paypal_button_wrap"></div>';
-			}
+
+			$content .= '</div>';
 		}
 
 		$content = apply_filters('wdf_pledge_button', $content, $post_id);

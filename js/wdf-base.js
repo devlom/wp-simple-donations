@@ -62,24 +62,20 @@ jQuery(document).ready( function($) {
 		return false;
 	});
 
-	// Handle donation button clicks — sets gateway and submits form
-	// (PayPal uses its own JS SDK button, this handles other gateways)
-	$(document).on('click', '.wdf_send_donation', function() {
+	// Handle gateway button clicks — each button has data-gateway attribute
+	$(document).on('click', '.wdf_gateway_btn', function() {
 		var $btn = $(this);
+		var gateway = $btn.data('gateway');
+		if (!gateway) return;
+
 		var $form = $btn.closest('form.wdf_checkout_form');
 		if (!$form.length) {
 			$form = $btn.closest('.wdf_fundraiser_panel').find('form.wdf_checkout_form');
 		}
 		if (!$form.length) return;
 
-		// Use the selected radio, or first available non-PayPal gateway
-		var $radio = $form.find('input[name="wdf_gateway"]:checked');
-		if (!$radio.length) {
-			$radio = $form.find('input[name="wdf_gateway"]').first();
-			$radio.prop('checked', true);
-		}
-
-		// Set step and add submit marker
+		// Set the gateway and step
+		$form.find('input[name="wdf_gateway"]').val(gateway);
 		$form.find('#wdf_step').val('gateway');
 		if (!$form.find('input[name="wdf_send_donation"]').length) {
 			$form.append('<input type="hidden" name="wdf_send_donation" value="1" />');

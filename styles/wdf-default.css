@@ -243,9 +243,66 @@
 	font-size: 1.1em;
 }
 
-/* === PayPal JS SDK Button === */
+/* === Gateway Buttons === */
+.wdf-default .wdf_gateway_buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	max-width: 300px;
+}
+
+.wdf-default .wdf_gateway_btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: inherit;
+	color: #ffffff;
+	background: var(--wdf-accent);
+	border: none;
+	border-radius: var(--wdf-radius);
+	cursor: pointer;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease;
+	text-decoration: none;
+	line-height: 1.4;
+}
+
+.wdf-default .wdf_gateway_btn:hover {
+	background: var(--wdf-accent-hover);
+	box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="przelewy24"] {
+	background: #d42227;
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="przelewy24"]:hover {
+	background: #b81d21;
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="payu"] {
+	background: #a6c307;
+	color: #1a1a1a;
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="payu"]:hover {
+	background: #95b006;
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="manual"] {
+	background: var(--wdf-bg-muted);
+	color: var(--wdf-text);
+	border: 1px solid var(--wdf-border);
+}
+
+.wdf-default .wdf_gateway_btn[data-gateway="manual"]:hover {
+	background: var(--wdf-border);
+}
+
 .wdf-default .wdf_paypal_button_wrap {
-	margin-top: 0.75rem;
 	max-width: 300px;
 }
 
