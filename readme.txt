@@ -1,5 +1,5 @@
 === WP Simple Donations ===
-Contributors: devlom
+Contributors: hexplor, devlom
 Donate link: https://wpsimpledonations.com/
 Tags: donations, fundraising, crowdfunding, paypal, payu, przelewy24
 Requires at least: 5.0
