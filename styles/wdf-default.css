@@ -1,0 +1,612 @@
+/*
+ * WP Simple Donations — Default Style
+ * Modern, neutral, theme-friendly design.
+ * Override CSS custom properties to customize.
+ */
+
+/* === Custom Properties === */
+.wdf-default {
+	--wdf-accent: #2563eb;
+	--wdf-accent-hover: #1d4ed8;
+	--wdf-success: #16a34a;
+	--wdf-bg: #ffffff;
+	--wdf-bg-muted: #f8fafc;
+	--wdf-border: #e2e8f0;
+	--wdf-text: #1e293b;
+	--wdf-text-muted: #64748b;
+	--wdf-radius: 8px;
+	--wdf-spacing: 1.5rem;
+}
+
+/* === Base Reset === */
+.wdf-default,
+.wdf-default *,
+.wdf-default *::before,
+.wdf-default *::after {
+	box-sizing: border-box;
+}
+
+/* === Panel Container (Card) === */
+.wdf-default.wdf_fundraiser_panel {
+	background: var(--wdf-bg);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	padding: var(--wdf-spacing);
+	color: var(--wdf-text);
+	font-family: inherit;
+	line-height: 1.5;
+	max-width: 640px;
+}
+
+/* === Stats Row === */
+.wdf-default .wdf_stats_row {
+	display: flex;
+	gap: var(--wdf-spacing);
+	margin-bottom: var(--wdf-spacing);
+}
+
+.wdf-default .wdf_total_backers,
+.wdf-default .wdf_amount_raised {
+	flex: 1;
+	background: var(--wdf-bg-muted);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	padding: 0.75rem 1rem;
+	text-align: center;
+}
+
+.wdf-default .wdf_big_num {
+	font-size: 1.75rem;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--wdf-text);
+}
+
+.wdf-default .wdf_total_backers p,
+.wdf-default .wdf_amount_raised p {
+	margin: 0.25rem 0 0;
+	font-size: 0.85rem;
+	color: var(--wdf-text-muted);
+}
+
+/* === Progress Bar === */
+.wdf-default .wdf_panel_progress_bar {
+	margin-bottom: var(--wdf-spacing);
+}
+
+.wdf-default .ui-progressbar {
+	height: 12px;
+	background: var(--wdf-bg-muted);
+	border: 1px solid var(--wdf-border);
+	border-radius: 6px;
+	overflow: hidden;
+	margin: 0.5rem 0;
+}
+
+.wdf-default .ui-progressbar .ui-progressbar-value {
+	height: 100%;
+	background: var(--wdf-success);
+	border-radius: 6px;
+	transition: width 0.6s ease;
+}
+
+.wdf-default .wdf_progress_info {
+	font-size: 0.875rem;
+	color: var(--wdf-text-muted);
+	margin: 0.25rem 0 0;
+}
+
+/* === Form Fields === */
+.wdf-default .wdf_field {
+	margin-bottom: 1rem;
+}
+
+.wdf-default label {
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--wdf-text);
+	margin-bottom: 0.25rem;
+}
+
+.wdf-default input[type="text"],
+.wdf-default input[type="email"],
+.wdf-default input[type="number"],
+.wdf-default input[type="url"],
+.wdf-default select,
+.wdf-default textarea {
+	width: 100%;
+	padding: 0.5rem 0.75rem;
+	font-size: 1rem;
+	font-family: inherit;
+	color: var(--wdf-text);
+	background: var(--wdf-bg);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	appearance: none;
+}
+
+.wdf-default input[type="text"]:focus,
+.wdf-default input[type="email"]:focus,
+.wdf-default input[type="number"]:focus,
+.wdf-default select:focus,
+.wdf-default textarea:focus {
+	outline: none;
+	border-color: var(--wdf-accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.wdf-default .wdf_pledge_amount {
+	width: auto;
+	max-width: 140px;
+	display: inline-block;
+	text-align: right;
+	font-weight: 600;
+}
+
+.wdf-default .wdf_custom_donation_label {
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--wdf-text);
+	margin: 1rem 0 0.5rem;
+}
+
+.wdf-default .currency {
+	font-weight: 600;
+	color: var(--wdf-text-muted);
+}
+
+/* === Privacy Checkbox === */
+.wdf-default .privacy-checkbox {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	margin: 1rem 0;
+	font-size: 0.85rem;
+	color: var(--wdf-text-muted);
+}
+
+.wdf-default .privacy-checkbox input[type="checkbox"] {
+	margin-top: 0.15rem;
+	flex-shrink: 0;
+}
+
+.wdf-default .privacy-checkbox a {
+	color: var(--wdf-accent);
+	text-decoration: underline;
+}
+
+.wdf-default .privacy-checkbox a:hover {
+	color: var(--wdf-accent-hover);
+}
+
+/* === Recurring Donation Select === */
+.wdf-default .wdf_recurring_holder {
+	display: block;
+	margin: 1rem 0;
+}
+
+.wdf-default .wdf_recurring_label {
+	font-size: 0.875rem;
+	font-weight: 500;
+	display: inline;
+}
+
+.wdf-default .wdf_recurring_select {
+	width: auto;
+	display: inline-block;
+	padding: 0.35rem 0.5rem;
+	font-size: 0.875rem;
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	background: var(--wdf-bg);
+}
+
+/* === Buttons === */
+.wdf-default .wdf_send_donation,
+.wdf-default .wdf_button,
+.wdf-default .wdf_send_pledge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: inherit;
+	color: #ffffff;
+	background: var(--wdf-accent);
+	border: none;
+	border-radius: var(--wdf-radius);
+	cursor: pointer;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease;
+	text-decoration: none;
+	line-height: 1.4;
+	margin-top: 0.75rem;
+	margin-right: 0.5rem;
+}
+
+.wdf-default .wdf_send_donation:hover,
+.wdf-default .wdf_button:hover,
+.wdf-default .wdf_send_pledge:hover {
+	background: var(--wdf-accent-hover);
+	box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.wdf-default .wdf_send_donation:active,
+.wdf-default .wdf_button:active {
+	transform: translateY(1px);
+}
+
+.wdf-default .wdf_send_donation i {
+	font-size: 1.1em;
+}
+
+/* === Backer Button (link to checkout) === */
+.wdf-default .wdf_backer_button {
+	margin: var(--wdf-spacing) 0;
+}
+
+/* === Payment Options === */
+.wdf-default .wdf_payment_options {
+	margin: 1rem 0;
+}
+
+.wdf-default .wdf_payment_options_title {
+	font-weight: 600;
+	font-size: 0.875rem;
+	margin-bottom: 0.5rem;
+	color: var(--wdf-text);
+}
+
+.wdf-default .wdf_payment_options label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	margin-right: 1rem;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+/* === Rewards === */
+.wdf-default .wdf_rewards {
+	margin: var(--wdf-spacing) 0;
+}
+
+.wdf-default .wdf_reward_item {
+	background: var(--wdf-bg);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	padding: 1rem;
+	margin-bottom: 0.75rem;
+	cursor: pointer;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wdf-default .wdf_reward_item:hover {
+	border-color: var(--wdf-accent);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.wdf-default .wdf_reward_item_disabled {
+	cursor: default;
+	opacity: 0.5;
+}
+
+.wdf-default .wdf_reward_item_disabled:hover {
+	border-color: var(--wdf-border);
+	box-shadow: none;
+}
+
+.wdf-default .wdf_reward_choice {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.wdf-default .wdf_level_amount {
+	font-weight: 700;
+	font-size: 1.1rem;
+	color: var(--wdf-text);
+}
+
+.wdf-default .wdf_reward_description {
+	margin-top: 0.5rem;
+	font-size: 0.875rem;
+	color: var(--wdf-text-muted);
+	padding-left: 1.5rem;
+}
+
+.wdf-default .wdf_reward_limit {
+	font-size: 0.75rem;
+	font-weight: 400;
+	background: #fef9c3;
+	color: #854d0e;
+	display: inline-block;
+	padding: 0.15rem 0.5rem;
+	border-radius: 4px;
+	margin-left: 0.5rem;
+}
+
+.wdf-default .wdf_reward_limit_gone {
+	background: #fee2e2;
+	color: #991b1b;
+}
+
+/* === Time Left === */
+.wdf-default .wdf_time_left {
+	font-size: 0.875rem;
+	color: var(--wdf-text-muted);
+	margin-top: var(--wdf-spacing);
+	padding-top: 0.75rem;
+	border-top: 1px solid var(--wdf-border);
+}
+
+/* === Confirmation Page === */
+.wdf-default .wdf_confirmation_page,
+.wdf_confirmation_page {
+	max-width: 640px;
+}
+
+.wdf-default .wdf_thanks_panel,
+.wdf_thanks_panel {
+	background: var(--wdf-bg-muted, #f8fafc);
+	border: 1px solid var(--wdf-border, #e2e8f0);
+	border-radius: var(--wdf-radius, 8px);
+	padding: var(--wdf-spacing, 1.5rem);
+	margin-bottom: var(--wdf-spacing, 1.5rem);
+}
+
+.wdf-default .wdf_confirm_pledge_amount,
+.wdf_confirm_pledge_amount {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin: 0 0 1rem;
+	color: var(--wdf-success, #16a34a);
+}
+
+.wdf-default .wdf_custom_thanks {
+	margin-top: 1rem;
+	font-size: 0.95rem;
+}
+
+/* Waiting / loading state */
+.wdf-pledge-waiting {
+	font-size: 1rem;
+	color: var(--wdf-text, #1e293b);
+}
+
+.wdf-loading-dots::after {
+	content: '';
+	animation: wdf-dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes wdf-dots {
+	0%   { content: ''; }
+	25%  { content: '.'; }
+	50%  { content: '..'; }
+	75%  { content: '...'; }
+}
+
+.wdf-pledge-error {
+	color: #dc2626;
+	font-weight: 500;
+}
+
+/* === Pledges Panel === */
+.wdf_pledges_panel {
+	max-width: 640px;
+}
+
+.wdf_pledges_panel ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wdf_pledges_panel li {
+	padding: 0.5rem 0;
+	border-bottom: 1px solid var(--wdf-border, #e2e8f0);
+	font-size: 0.9rem;
+	color: var(--wdf-text, #1e293b);
+}
+
+.wdf_pledges_panel li:last-child {
+	border-bottom: none;
+}
+
+/* === No Gateway Notice === */
+.wdf_no_gateway_notice {
+	background: #fef9c3;
+	border: 1px solid #fde68a;
+	border-radius: var(--wdf-radius, 8px);
+	padding: 1rem 1.25rem;
+	color: #854d0e;
+	font-size: 0.9rem;
+	margin: 1rem 0;
+}
+
+/* === Checkout Form === */
+.wdf-default.wdf_checkout_form {
+	background: var(--wdf-bg);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	padding: var(--wdf-spacing);
+	max-width: 640px;
+}
+
+/* === Gateway Payment Form (checkout step 2) === */
+.wdf_gateway_wrapper.wdf-default {
+	--wdf-accent: #2563eb;
+	--wdf-accent-hover: #1d4ed8;
+	--wdf-bg: #ffffff;
+	--wdf-bg-muted: #f8fafc;
+	--wdf-border: #e2e8f0;
+	--wdf-text: #1e293b;
+	--wdf-text-muted: #64748b;
+	--wdf-radius: 8px;
+	--wdf-spacing: 1.5rem;
+	max-width: 640px;
+	font-family: inherit;
+	color: var(--wdf-text);
+	line-height: 1.5;
+}
+
+.wdf_gateway_wrapper.wdf-default .wdf_payment_summary {
+	background: var(--wdf-bg-muted);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	padding: var(--wdf-spacing);
+	margin-bottom: var(--wdf-spacing);
+}
+
+.wdf_gateway_wrapper.wdf-default .wdf_payment_summary h4 {
+	margin: 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.wdf_gateway_wrapper.wdf-default form {
+	background: var(--wdf-bg);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	padding: var(--wdf-spacing);
+}
+
+.wdf_gateway_wrapper.wdf-default label {
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--wdf-text);
+	margin-bottom: 0.25rem;
+	margin-top: 0.75rem;
+}
+
+.wdf_gateway_wrapper.wdf-default input[type="text"],
+.wdf_gateway_wrapper.wdf-default input[type="email"],
+.wdf_gateway_wrapper.wdf-default select {
+	width: 100%;
+	padding: 0.5rem 0.75rem;
+	font-size: 1rem;
+	font-family: inherit;
+	color: var(--wdf-text);
+	background: var(--wdf-bg);
+	border: 1px solid var(--wdf-border);
+	border-radius: var(--wdf-radius);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wdf_gateway_wrapper.wdf-default input[type="text"]:focus,
+.wdf_gateway_wrapper.wdf-default input[type="email"]:focus {
+	outline: none;
+	border-color: var(--wdf-accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.wdf_gateway_wrapper.wdf-default input[type="submit"],
+.wdf_gateway_wrapper.wdf-default .button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: inherit;
+	color: #ffffff;
+	background: var(--wdf-accent);
+	border: none;
+	border-radius: var(--wdf-radius);
+	cursor: pointer;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease;
+	margin-top: 1rem;
+}
+
+.wdf_gateway_wrapper.wdf-default input[type="submit"]:hover,
+.wdf_gateway_wrapper.wdf-default .button:hover {
+	background: var(--wdf-accent-hover);
+	box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+/* === Shortcode Wrappers === */
+.wdf_shortcode_title h2 {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin: 0 0 1rem;
+}
+
+.wdf_shortcode_content {
+	margin-bottom: var(--wdf-spacing, 1.5rem);
+}
+
+/* === Widget Context === */
+.widget .wdf-default.wdf_fundraiser_panel {
+	max-width: 100%;
+	border: none;
+	padding: 0;
+}
+
+.widget .wdf-default .wdf_stats_row {
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.widget .wdf-default .wdf_big_num {
+	font-size: 1.5rem;
+}
+
+/* === Error Messages === */
+.wdf-default .error,
+.wdf-default .wdf_error {
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	border-radius: var(--wdf-radius);
+	padding: 0.75rem 1rem;
+	color: #dc2626;
+	font-size: 0.875rem;
+	margin-bottom: 1rem;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+	.wdf-default.wdf_fundraiser_panel,
+	.wdf-default.wdf_checkout_form {
+		padding: 1rem;
+	}
+
+	.wdf-default .wdf_stats_row {
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.wdf-default .wdf_big_num {
+		font-size: 1.5rem;
+	}
+
+	.wdf-default .wdf_send_donation,
+	.wdf-default .wdf_button {
+		width: 100%;
+		text-align: center;
+	}
+
+	.wdf-default .wdf_reward_item {
+		padding: 0.75rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.wdf-default .wdf_pledge_amount {
+		max-width: 100px;
+	}
+}
+
+/* === Print === */
+@media print {
+	.wdf_checkout_form,
+	.wdf_send_donation,
+	.wdf_button,
+	.wdf_backer_button,
+	.wdf_payment_options {
+		display: none !important;
+	}
+}

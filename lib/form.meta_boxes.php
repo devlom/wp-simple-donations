@@ -41,7 +41,7 @@ if($pagenow == 'nav-menus.php') { ?>
                     <option value="wdf_canceled" <?php selected($post->post_status,'wdf_canceled'); ?>><?php _e('Canceled','wdf'); ?></option>
                 </select>
             </p>
-            <p><input type="submit" class="button-primary" value="Save Pledge" /></p>
+            <p><input type="submit" class="button-primary" value="<?php esc_attr_e('Save Pledge', 'wdf'); ?>" /></p>
             <?php break;
         ///////////////////////////
         // PLEDGE INFO METABOX //
@@ -54,7 +54,7 @@ if($pagenow == 'nav-menus.php') { ?>
             if(!isset($meta['wdf_native'][0]) || $meta['wdf_native'][0] !== '1') : ?>
                 <?php $funders = get_posts(array('post_type' => 'funder', 'numberposts' => -1, 'post_status' => 'publish')); ?>
                 <?php if(!$funders) : ?>
-                    <div class="error below-h2"><p style="width: 100%;"><?php echo __('You have not made any fundraisers yet.  You must create a fundraiser to make a pledge to.','wdf') ?></p></div>
+                    <div class="error below-h2"><p style="width: 100%;"><?php echo __('You have not made any campaigns yet.  You must create a campaign to make a pledge to.','wdf') ?></p></div>
                 <?php else : ?>
                     <input type="hidden" name="post_title" value="Manual Payment" />
                     <input type="hidden" name="wdf[transaction][status]" value="Manual Payment" />
@@ -62,7 +62,7 @@ if($pagenow == 'nav-menus.php') { ?>
                         <tbody>
                         <tr valign="top">
                             <th scope="row">
-                                <label><?php echo __('Choose The Fundraiser','wdf') ?></label>
+                                <label><?php echo __('Choose The Campaign','wdf') ?></label>
                             </th>
                             <td>
                                 <p>
@@ -118,7 +118,7 @@ if($pagenow == 'nav-menus.php') { ?>
             <?php else : ?>
                 <?php $parent = get_post($post->post_parent); ?>
                 <?php if($parent) : ?>
-                    <h4><?php _e('Fundraiser','wdf'); ?>:</h4><p><a href="<?php echo get_edit_post_link($parent->ID); ?>"><?php echo $parent->post_title; ?></a></p>
+                    <h4><?php _e('Campaign','wdf'); ?>:</h4><p><a href="<?php echo get_edit_post_link($parent->ID); ?>"><?php echo $parent->post_title; ?></a></p>
                 <?php else : ?>
                     <?php $donations = get_posts(array('post_type' => 'funder', 'numberposts' => -1, 'post_status' => 'publish')); ?>
                     <p>
@@ -221,7 +221,7 @@ if($pagenow == 'nav-menus.php') { ?>
         case 'wdf_type' :
             $settings = get_option('wdf_settings');	?>
             <div id="wdf_type">
-                <p style="display:none"><?php _e('Please enter title and choose fundraising type that you want to use (this option cant be changed after someone pledges).','wdf'); ?></p>
+                <p style="display:none"><?php _e('Please enter title and choose donation type that you want to use (this option cant be changed after someone pledges).','wdf'); ?></p>
                 <?php if( isset($settings['payment_types']) && is_array($settings['payment_types']) && count($settings['payment_types']) >= 1 ) : ?>
                     <?php  ?>
                     <?php foreach($settings['payment_types'] as $name) : ?>
@@ -232,7 +232,7 @@ if($pagenow == 'nav-menus.php') { ?>
                             $description = __('Allows for a simple continuous donations','wdf');
                         } elseif($name == 'advanced') {
                             $label = __('Advanced Crowdfunding','wdf');
-                            $description = __('Set fundraising goals and rewards.  Pledges are only authorized and payments are not processed until your goal is reached.','wdf');
+                            $description = __('Set donation goals and rewards.  Pledges are only authorized and payments are not processed until your goal is reached.','wdf');
                             $description = __('Pledges are only authorized and payments are not processed until your goal is reached.','wdf');
                         } else {
                             $label = '';
@@ -323,7 +323,7 @@ if($pagenow == 'nav-menus.php') { ?>
                 </p>
             </div>
             <?php endif; ?>
-            <?php if($settings['active_gateways']['paypal']) : ?>
+            <?php if(!empty($settings['active_gateways']['paypal'])) : ?>
             <p id="wdf_recurring"><label><?php _e('Allow Recurring Donations?','wdf') ?>
                     <select name="wdf[recurring]" rel="wdf_recurring" class="wdf_toggle">
                         <option value="yes" <?php (isset($meta['wdf_recurring'][0]) ? selected($meta['wdf_recurring'][0],'yes') : ''); ?>><?php _e('Yes','wdf'); ?></option>
@@ -339,7 +339,7 @@ if($pagenow == 'nav-menus.php') { ?>
                         <option value="bottom" <?php (isset($meta['wdf_panel_pos'][0]) ? selected($meta['wdf_panel_pos'][0],'bottom') : ''); ?>><?php _e('Below Content','wdf'); ?></option>
                         <option value="hide" <?php (isset($meta['wdf_panel_pos'][0]) ? selected($meta['wdf_panel_pos'][0],'hide') : ''); ?>><?php _e('Hide','wdf'); ?></option>
                     </select>
-                </label><?php echo $tips->add_tip(__('If you are not using the Fundraiser sidebar widget, choose the position of your info panel.','wdf')); ?>
+                </label><?php echo $tips->add_tip(__('If you are not using the Donation sidebar widget, choose the position of your info panel.','wdf')); ?>
             </p>
             <?php if($settings['single_checkout_type'] == '1') : ?>
             <p>
@@ -398,7 +398,7 @@ if($pagenow == 'nav-menus.php') { ?>
         </script>
         
         <?php if($disabled != '') : ?>
-            <div class="below-h2 updated"><p><?php _e('Your fundraising dates, goals and rewards are locked in.','wdf'); ?></p></div>
+            <div class="below-h2 updated"><p><?php _e('Your donation dates, goals and rewards are locked in.','wdf'); ?></p></div>
         <?php endif; ?>
             <div id="wdf_funder_goals">
                 <?php //if( in_array('advanced', $settings['payment_types']) || in_array('standard', $settings['payment_types']) ) : ?>

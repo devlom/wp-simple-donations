@@ -62,6 +62,35 @@ jQuery(document).ready( function($) {
 		return false;
 	});
 
+	// Handle donation button clicks — sets gateway and submits form
+	$(document).on('click', '.wdf_send_donation', function() {
+		var $btn = $(this);
+		var $form = $btn.closest('form.wdf_checkout_form');
+		if (!$form.length) {
+			$form = $btn.closest('.wdf_fundraiser_panel').find('form.wdf_checkout_form');
+		}
+		if (!$form.length) return;
+
+		// Determine gateway from button class
+		if ($btn.hasClass('paypal')) {
+			$form.find('input[name="wdf_gateway"]').val('paypal');
+		} else {
+			// Use the selected radio, or first available gateway
+			var $radio = $form.find('input[name="wdf_gateway"]:checked');
+			if (!$radio.length) {
+				$radio = $form.find('input[name="wdf_gateway"]').first();
+				$radio.prop('checked', true);
+			}
+		}
+
+		// Set step and add submit marker
+		$form.find('#wdf_step').val('gateway');
+		if (!$form.find('input[name="wdf_send_donation"]').length) {
+			$form.append('<input type="hidden" name="wdf_send_donation" value="1" />');
+		}
+		$form.trigger('submit');
+	});
+
 	//loading dots
 	if($(".wdf-loading-dots").length) {
 		var dots = "";

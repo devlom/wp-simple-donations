@@ -81,12 +81,15 @@ if(!function_exists('wdf_fundraiser_panel')) {
 			}
 		}
 		$backer_total = wdf_total_backers(false, $post_id);
+		$content .= '<div class="wdf_stats_row">';
 		$content .= '<div class="wdf_total_backers"><div class="wdf_big_num">'.$backer_total.'</div><p>'.apply_filters('wdf_backer_label', ($backer_total > 1 ? esc_attr($settings['donation_labels']['backer_plural']) : esc_attr($settings['donation_labels']['backer_single'])) ).'</p></div>';
 		if(wdf_has_goal($post_id)) {
 			$content .= '<div class="wdf_amount_raised"><div class="wdf_big_num">'.wdf_amount_raised(false, $post_id).'</div><p>'.sprintf(__('raised of a %s goal','wdf'),wdf_goal(false, $post_id)).'</p></div>';
+			$content .= '</div>';
 			$content .= '<div class="wdf_panel_progress_bar">'.wdf_progress_bar(false, $post_id).'</div>';
 		} else {
 			$content .= '<div class="wdf_amount_raised"><div class="wdf_big_num">'.wdf_amount_raised(false, $post_id).'</div><p>'.__('raised','wdf').'</p></div>';
+			$content .= '</div>';
 		}
 
 		// Checking to see if this fundraiser can accept pledges.
@@ -567,6 +570,11 @@ if(!function_exists('wdf_gateway_choices')) {
 	function wdf_gateway_choices( $echo = true, $default = '' ) {
 		global $wdf_gateway_active_plugins; $content = '';
 
+		if(!is_array($wdf_gateway_active_plugins) || empty($wdf_gateway_active_plugins)) {
+			$content = '<p class="wdf_no_gateway_notice">' . __('No payment gateways have been enabled. Please configure a payment gateway in the plugin settings.', 'wdf') . '</p>';
+			if($echo) { echo $content; return; } else { return $content; }
+		}
+
 		if(count($wdf_gateway_active_plugins) == 1 ) {
 			$gateway = array_keys($wdf_gateway_active_plugins);
 			$gateway = $gateway[0];
@@ -673,7 +681,21 @@ if(!function_exists('wdf_show_checkout')) {
 
 		switch($checkout_step) {
 			case 'gateway' :
-				$content = apply_filters('wdf_checkout_payment_form_'.$_SESSION['wdf_gateway'],'');
+				if(!isset($_SESSION['wdf_gateway']) || empty($_SESSION['wdf_gateway'])) {
+					$checkout_step = '';
+					global $wdf;
+					$wdf->create_error(__('Please choose a payment method.','wdf'),'checkout_top');
+					$content = apply_filters('wdf_error_checkout_top', '');
+					$content .= wdf_checkout_page( false, $post_id );
+				} else {
+					$content = apply_filters('wdf_checkout_payment_form_'.$_SESSION['wdf_gateway'],'');
+					if(empty($content)) {
+						global $wdf;
+						$wdf->create_error(__('Selected payment gateway is not available.','wdf'),'checkout_top');
+						$content = apply_filters('wdf_error_checkout_top', '');
+						$content .= wdf_checkout_page( false, $post_id );
+					}
+				}
 				break;
 			default :
 				$content = apply_filters('wdf_error_checkout_top', '');
@@ -715,6 +737,17 @@ if(!function_exists('wdf_pledge_button')) {
 		}
 		$settings = get_option('wdf_settings');
 		$meta = get_post_custom($post_id);
+
+		// Don't render donation form if no gateways are active (except widget_simple_donate which has its own PayPal form)
+		if($context !== 'widget_simple_donate') {
+			global $wdf_gateway_active_plugins;
+			if(!is_array($wdf_gateway_active_plugins) || empty($wdf_gateway_active_plugins)) {
+				$content = '<p class="wdf_no_gateway_notice">' . __('Donations are temporarily unavailable. Please try again later.', 'wdf') . '</p>';
+				$content = apply_filters('wdf_pledge_button', $content, $post_id);
+				if($echo) {echo $content;} else {return $content;}
+				return;
+			}
+		}
 
 		//Default $atts
 		$default_args = array(

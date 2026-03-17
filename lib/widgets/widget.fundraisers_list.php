@@ -56,14 +56,14 @@ class WDF_Fundraisers_List extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo __('Title','wdf') ?></label><br />
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Featured Fundraisers','wdf')); ?>" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Featured Campaigns','wdf')); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php echo __('Description','wdf') ?></label><br />
 			<textarea id="<?php echo $this->get_field_id( 'description' ); ?>" class="widefat" name="<?php echo $this->get_field_name('description'); ?>"><?php echo (isset($instance['description']) ? esc_textarea($instance['description']) : ''); ?></textarea>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php echo __('Maximum number of fundraisers to display','wdf') ?></label><br />
+			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php echo __('Maximum number of campaigns to display','wdf') ?></label><br />
 			<input id="<?php echo $this->get_field_id( 'limit' ); ?>" type="text" name="<?php echo $this->get_field_name('limit'); ?>" class="widefat" value="<?php echo (isset($instance['limit']) ? $instance['limit'] : ''); ?>" />
 		</p>
 		<?php

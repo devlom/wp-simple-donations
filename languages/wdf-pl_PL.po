@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPMU Fundraising\n"
+"Project-Id-Version: WP Simple Donations\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-05 09:32+0100\n"
 "PO-Revision-Date: 2026-02-26 12:00+0100\n"
 "Last-Translator: Cole <cole@imakethe.com>\n"
-"Language-Team: Incsub <cole@incsub.com>\n"
+"Language-Team: Devlom <info@wpsimpledonations.com>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:50
 msgid ""
-"There was an issue determining where the Fundraising plugin is installed. "
+"There was an issue determining where the WP Simple Donations plugin is installed. "
 "Please reinstall."
 msgstr ""
 "Wykryto problem gdzie wtyczka jest zainstalowana. Proszę przeinstalować."
@@ -62,13 +62,13 @@ msgstr "Zbiórki"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:102
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:120
-msgid "Fundraiser"
+msgid "Donation"
 msgstr "Zbiórka"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:103
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:1052
-msgid "Fundraisers"
+msgid "Donations"
 msgstr "Zbiórki"
 
 #: C:\Programs
@@ -259,7 +259,7 @@ msgstr "Wybierz sposób płatności."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:915
-msgid "Fundraiser could not be determined."
+msgid "Donation campaign could not be determined."
 msgstr "Organizator nie został rozpoznany."
 
 #: C:\Programs
@@ -398,11 +398,6 @@ msgid "%s ID"
 msgstr "%s ID"
 
 #: C:\Programs
-#: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:1446
-msgid "Donations"
-msgstr "Dotacje"
-
-#: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:1448
 msgid "Crowdfunding"
 msgstr "Crowdfunding"
@@ -439,7 +434,7 @@ msgstr "Postęp"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:1540
-msgid "Insert Fundraising Shortcodes"
+msgid "Insert Donation Shortcodes"
 msgstr "Wordpressowe skróty"
 
 #: C:\Programs
@@ -449,7 +444,7 @@ msgstr "Dodaj pasek postępu"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/fundraiser.php:1554
-msgid "Only fundraisers that have a goal can display a progress bar"
+msgid "Only campaigns that have a goal can display a progress bar"
 msgstr "Tylko zbiórki które mają ustawiony cel, mogą wyświetlać pasek postępu"
 
 #: C:\Programs
@@ -835,7 +830,7 @@ msgstr "Poradnik: Jak zacząć"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:4
-msgid "The Fundraising plugin can help you fund your important projects."
+msgid "WP Simple Donations can help you fund your important projects."
 msgstr "Wtyczka zbiórkowa pomoże zebrać Ci fundusze na ważne cele."
 
 #: C:\Programs
@@ -845,7 +840,7 @@ msgstr "Poradnik pierwszego użytkowania"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:12
-msgid "Welcome to the Fundraising Plugin!"
+msgid "Welcome to WP Simple Donations!"
 msgstr "Witamy we wtyczce zbiórkowej!"
 
 #: C:\Programs
@@ -864,12 +859,12 @@ msgstr "Konfiguracja ustawień"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:16
-msgid "Create your first fundraiser, set a goal, and choose a display style."
+msgid "Create your first campaign, set a goal, and choose a display style."
 msgstr "Stwórz swoją zbiórkę, ustaw cel i wybierz styl wyświetlania."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:16
-msgid "Create A Fundraiser"
+msgid "Create A Campaign"
 msgstr "Stwórz zbiórkę"
 
 #: C:\Programs
@@ -889,14 +884,14 @@ msgstr "Dostępne shortcodes"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:29
-msgid "Fundraiser Panel"
+msgid "Donation Panel"
 msgstr "Panel zbiórek"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:30
 msgid ""
-"The fundraiser panel displays relevant information about a particular "
-"fundraiser like: Total Pledges, Goal Information, and links to the pledge "
+"The donation panel displays relevant information about a particular "
+"campaign like: Total Pledges, Goal Information, and links to the pledge "
 "checkout page."
 msgstr ""
 "Panel zbiórek wyświetla Ci informacje dotyczące konkretnej zbiórki, takie "
@@ -904,25 +899,25 @@ msgstr ""
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:32
-msgid "The ID of the fundraiser you wish to display"
+msgid "The ID of the campaign you wish to display"
 msgstr "ID zbiórki które chcesz wyświetlić"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:33
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:55
 msgid ""
-"A valid loaded style name. This will use the default fundraiser style if no "
+"A valid loaded style name. This will use the default style if no "
 "style is given."
 msgstr "Nazwa istniejącego szablonu. Jeśli nie zaznaczysz, użyjemy domyślnego."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:34
-msgid "(Yes/No) Shows the title of the fundraiser above the panel"
+msgid "(Yes/No) Shows the title of the campaign above the panel"
 msgstr "(Tak/Nie) Pokazuje tytuł zbiórki powyżej panelu"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:35
-msgid "(Yes/No) Shows the post content of the fundraiser above the panel"
+msgid "(Yes/No) Shows the post content of the campaign above the panel"
 msgstr "(Tak/Nie) Pokazuje treść zbiórki powyżej panelu"
 
 #: C:\Programs
@@ -941,23 +936,23 @@ msgstr ""
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:51
-msgid "Fundraiser Progress Bar"
+msgid "Donation Progress Bar"
 msgstr "Pasek postępu zbiórki"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:52
-msgid "Display a progress bar for a particular fundraiser."
+msgid "Display a progress bar for a particular campaign."
 msgstr "Wyświetl pasek postępu dla konkretnej zbiórki."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:54
-msgid "The ID of the fundraiser you wish to display a progress bar for."
+msgid "The ID of the campaign you wish to display a progress bar for."
 msgstr "ID zbiórki dla której chcesz wyświetlić pasek postępu."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:56
 msgid ""
-"(Yes/No) Shows the title of the fundraiser above the progress bar - Default: "
+"(Yes/No) Shows the title of the campaign above the progress bar - Default: "
 "no"
 msgstr ""
 "(Tak/Nie) Pokazuje tytuł zbiórki powyżej paska postępu - Domyślnie wyłączone"
@@ -965,7 +960,7 @@ msgstr ""
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_dashboard.php:57
 msgid ""
-"(Yes/No) Shows the fundraising goal and amount raised above the progress "
+"(Yes/No) Shows the donation goal and amount raised above the progress "
 "bar. - Default: no"
 msgstr ""
 "(Tak/Nie) Pokazuje cel zbiórki i kwotę powyżej paska postępu. Domyślnie - nie"
@@ -1058,12 +1053,12 @@ msgstr "Liczba mnoga"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:100
-msgid "Fundraiser Labels"
+msgid "Campaign Labels"
 msgstr "Etykiety zbiórek"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:101
-msgid "Each fundraising project will be labeled with these"
+msgid "Each donation campaign will be labeled with these"
 msgstr "Do każdej zbiórki będzie dodana ta etykieta"
 
 #: C:\Programs
@@ -1085,7 +1080,7 @@ msgstr "Etykiety wpłat"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:127
-msgid "Any payment made towards a fundraiser will use this label"
+msgid "Any payment made towards a campaign will use this label"
 msgstr "Każda wpłata będzie oznaczona tą etykietą"
 
 #: C:\Programs
@@ -1108,9 +1103,9 @@ msgstr "Podsumowanie"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:165
 msgid ""
-"An eloborated checkout page allows backers to view additional information "
-"about your fundraiser.  Checking out directly from the fundraising panel "
-"will begin the payment process immediately"
+"An elaborated checkout page allows backers to view additional information "
+"about your campaign.  Checking out directly from the donation panel will "
+"begin the payment process immediately"
 msgstr "Dodatkowe informacje o zbiórce"
 
 #: C:\Programs
@@ -1132,7 +1127,7 @@ msgstr "Wybierz stronę podsumowania"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:181
-msgid "Allow per fundraiser checkout types?"
+msgid "Allow per campaign checkout types?"
 msgstr "Pozwól na osobne podsumowania dla każdych zbiórek ?"
 
 #: C:\Programs
@@ -1147,13 +1142,13 @@ msgstr "Wybierz domyślny styl"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:212
-msgid "Allow per fundraiser styles"
+msgid "Allow per campaign styles"
 msgstr "Pozwól na osobne style dla konkretnych zbiórek"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:218
 msgid ""
-"Allowing this option will allow each fundraiser to override your site's "
+"Allowing this option will allow each campaign to override your site's "
 "default styles"
 msgstr "Włączenie tej opcji pozwoli każdej zbiórce ustawić obrębny styl"
 
@@ -1166,7 +1161,7 @@ msgstr "Własny CSS"
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:226
 msgid ""
 "CSS styles saved in this box will be loaded on any page containing "
-"fundraising content. Do not use "
+"donation content. Do not use "
 msgstr ""
 "Jeśli umieścisz tutaj jakiś kod, będzie ładowany na każdej stronie zbiórki. "
 "Lepiej nie używać "
@@ -1192,7 +1187,7 @@ msgstr "Ustawienia adresów url"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:262
-msgid "Fundraising Permalink Structure"
+msgid "Donation Permalink Structure"
 msgstr "Struktura url zbiórek"
 
 #: C:\Programs
@@ -1210,7 +1205,7 @@ msgstr "Włącz “front” w adresach url"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:291
-msgid "Fundraising Directory Location"
+msgid "Donation Directory Location"
 msgstr "Adres zbiórki"
 
 #: C:\Programs
@@ -1221,7 +1216,7 @@ msgstr "Podsumowanie"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:303
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:312
-msgid "The Fundraiser's Name"
+msgid "The Campaign's Name"
 msgstr "Nazwa zbiórki"
 
 #: C:\Programs
@@ -1237,7 +1232,7 @@ msgstr "Ustawienia uprawnień"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:341
 msgid ""
-"Controll access to fundraising features for every user role available in "
+"Control access to donation features for every user role available in "
 "your WP installation. Administrator gets access to all of them by default."
 msgstr ""
 "Konkretne uprawnienia dla grup użytkowników. Administrator ma dostęp do "
@@ -1270,7 +1265,7 @@ msgstr "Pokaż dziesiętne w cenach"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.blog_settings.php:417
-msgid "Allowed Fundraiser Types"
+msgid "Allowed Donation Types"
 msgstr "Dozwolone typy zbiórek"
 
 #: C:\Programs
@@ -1348,7 +1343,7 @@ msgstr "Anulowano"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:56
 msgid ""
-"You have not made any fundraisers yet.  You must create a fundraiser to make "
+"You have not made any campaigns yet.  You must create a campaign to make "
 "a pledge to."
 msgstr ""
 "Nie stworzyłeś jeszcze żadnych zbiórek. Musisz stworzyć zbiórkę zanim "
@@ -1356,7 +1351,7 @@ msgstr ""
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:64
-msgid "Choose The Fundraiser"
+msgid "Choose The Campaign"
 msgstr "Wybierz zbiórkę"
 
 #: C:\Programs
@@ -1485,7 +1480,7 @@ msgstr "Zebrana kwota"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:223
 msgid ""
-"Please enter title and choose fundraising type that you want to use (this "
+"Please enter title and choose donation type that you want to use (this "
 "option cant be changed after someone pledges)."
 msgstr ""
 "Wpisz tytuł i zaznacz rodzaj zbiórki. Ta opcja nie może być zmieniona jak "
@@ -1499,7 +1494,7 @@ msgstr "Zezwól na proste dotacje bez celów i nagród"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:234
 msgid ""
-"Set fundraising goals and rewards.  Pledges are only authorized and payments "
+"Set donation goals and rewards.  Pledges are only authorized and payments "
 "are not processed until your goal is reached."
 msgstr ""
 "Cele zbiórek i nagrody. Wpłaty są tylko autoryzowany, płatności nie są "
@@ -1561,7 +1556,7 @@ msgstr "Ukryj"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:341
 msgid ""
-"If you are not using the Fundraiser sidebar widget, choose the position of "
+"If you are not using the Donation sidebar widget, choose the position of "
 "your info panel."
 msgstr ""
 "Jeśli nie używasz widżeta zbiórek w sidebarze, wybierz pozycję dla swojego "
@@ -1589,7 +1584,7 @@ msgstr "Musisz ustawić kwotę większą niż 1"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/form.meta_boxes.php:400
-msgid "Your fundraising dates, goals and rewards are locked in."
+msgid "Your donation dates, goals and rewards are locked in."
 msgstr "Twoje daty, cele i nagrody są zablokowane."
 
 #: C:\Programs
@@ -1791,7 +1786,7 @@ msgstr "Ręczna płatność."
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/gateways/manual.php:128
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/gateways/paypal.php:171
-msgid "Could not determine fundraiser"
+msgid "Could not determine campaign"
 msgstr "Nie można znaleźć zbiórki"
 
 #: C:\Programs
@@ -2033,7 +2028,7 @@ msgstr "Proste opcje płatności (Proste dotacje)"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/gateways/paypal.php:685
 msgid ""
-"In order for Fundraising to function correctly you must setup an IPN "
+"In order for WP Simple Donations to function correctly you must setup an IPN "
 "listening URL with PayPal. Failure to do so will prevent your site from "
 "being notified when a recurring payment is cancelled."
 msgstr "Aby zbiórki działały poprawnie, musisz ustawić adres IPN."
@@ -2166,7 +2161,7 @@ msgstr "zebrano z %s"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/template-functions.php:88
 msgid "raised"
-msgstr "zebranoc"
+msgstr "zebrano"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/template-functions.php:310
@@ -2338,7 +2333,7 @@ msgstr "Zacząć jest bardzo prosto"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/wdf_tutorials.php:16
 msgid ""
-"Follow these tutorial steps to get your Fundraising project up and running "
+"Follow these tutorial steps to get your donation project up and running "
 "quickly."
 msgstr "Podążaj za wskazówkami aby w sposób szybki wystartować zbiórkę."
 
@@ -2382,30 +2377,30 @@ msgstr ""
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/wdf_tutorials.php:33
-msgid "Create your First Fundraiser"
+msgid "Create your First Campaign"
 msgstr "Utwórz pierwszą zbiórkę"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/wdf_tutorials.php:34
 msgid ""
 "Now that you have setup your presentation and payment settings you can "
-"create your first fundraiser. Start by adding a title."
+"create your first campaign. Start by adding a title."
 msgstr ""
 "Teraz kiedy prezentację ustawiłeś, możesz stworzyć pierwszą zbiórkę. Zacznij "
 "od dodania tytułu."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/wdf_tutorials.php:37
-msgid "Choose a fundraising type"
+msgid "Choose a donation type"
 msgstr "Wybierz rodzaj zbiórki"
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/wdf_tutorials.php:38
 msgid ""
-"This step is crucial to how your fundraiser will operate.  Remember: Simple "
+"This step is crucial to how your campaign will operate.  Remember: Simple "
 "Donations process automatically but can not set goals or rewards.  Advanced "
 "Crowdfunding allows for goals and rewards but will only be approved until "
-"the goal has been reached.  After you save your fundraising type you will "
+"the goal has been reached.  After you save your donation type you will "
 "have additional options depending on your choice.  Enjoy!"
 msgstr ""
 "Ten krok jest kluczowy. Proste dotacje są idealne dla automatycznych "
@@ -2434,7 +2429,7 @@ msgstr ""
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.fundraiser_panel.php:132
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.fundraisers_list.php:58
-msgid "Featured Fundraisers"
+msgid "Featured Campaigns"
 msgstr "Wyróżnione zbiórki"
 
 #: C:\Programs
@@ -2466,7 +2461,7 @@ msgstr "Wyświetl konkretny %s"
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.fundraiser_panel.php:191
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.pledges_panel.php:115
-msgid "You have not created any fundraisers yet"
+msgid "You have not created any campaigns yet"
 msgstr "Nie stworzyłeś jeszcze żadnej zbiórki"
 
 #: C:\Programs
@@ -2477,7 +2472,7 @@ msgstr "Wybierz listę prostych %s linków które chcesz wyświetlić."
 
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.fundraisers_list.php:65
-msgid "Maximum number of fundraisers to display"
+msgid "Maximum number of campaigns to display"
 msgstr "Maksymalna liczba zbiórek do wyświetlenia"
 
 #: C:\Programs
@@ -2501,7 +2496,7 @@ msgstr ""
 #: C:\Programs
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.pledges_panel.php:75
 #: Portable\EasyPHP\data\localweb\wordpress-incsub\wp-content\plugins\fundraising/lib/widgets/widget.recent_fundraisers.php:50
-msgid "Recent Fundraisers"
+msgid "Recent Campaigns"
 msgstr "Ostatnie zbiórki"
 
 #: C:\Programs
@@ -2629,3 +2624,103 @@ msgstr "Adres URL powiadomień"
 #: lib/gateways/przelewy24.php
 msgid "Enter this URL in the Przelewy24 admin panel under My Data > API Settings > Notification URL."
 msgstr "Wprowadź ten adres URL w panelu Przelewy24 w zakładce Moje dane > Ustawienia API > Adres URL powiadomień."
+
+#: lib/form.meta_boxes.php:44
+msgid "Save Pledge"
+msgstr "Zapisz wpłatę"
+
+#: lib/form.blog_settings.php:519
+msgid "Reset Data"
+msgstr "Resetuj dane"
+
+#: lib/form.blog_settings.php:536
+msgid "Save Changes"
+msgstr "Zapisz zmiany"
+
+#: lib/form.blog_settings.php:541
+msgid ""
+"Are you sure you want to do this? You will lose all the data associated with "
+"your donations and settings!"
+msgstr ""
+"Czy na pewno chcesz to zrobić? Stracisz wszystkie dane związane z Twoimi "
+"zbiórkami i ustawieniami!"
+
+#: lib/widgets/widget.recent_fundraisers.php:54
+msgid "Number of campaigns to show:"
+msgstr "Liczba zbiórek do wyświetlenia:"
+
+#: lib/form.meta_boxes.php:121
+msgid "Campaign"
+msgstr "Zbiórka"
+
+#: lib/form.meta_boxes.php:287
+msgid "Continue"
+msgstr "Kontynuuj"
+
+#: wp-simple-donations.php:865
+msgid "Security check failed. Please try again."
+msgstr "Weryfikacja bezpieczeństwa nie powiodła się. Spróbuj ponownie."
+
+#: lib/gateways/dotpay.php:154
+msgid "Transaction Completed"
+msgstr "Transakcja zakończona"
+
+#: lib/gateways/dotpay.php:164
+msgid "Transaction Rejected"
+msgstr "Transakcja odrzucona"
+
+#: lib/class.seeder.php
+msgid "Przykładowa zbiórka"
+msgstr "Przykładowa zbiórka"
+
+#: lib/class.seeder.php
+msgid "Ręczna płatność"
+msgstr "Ręczna płatność"
+
+#: lib/class.seeder.php
+msgid "Przykładowa wpłata"
+msgstr "Przykładowa wpłata"
+
+#: lib/class.seeder.php
+msgid "To jest przykładowa zbiórka stworzona automatycznie przez wtyczkę WP Simple Donations."
+msgstr "To jest przykładowa zbiórka stworzona automatycznie przez wtyczkę WP Simple Donations."
+
+#: lib/class.seeder.php
+msgid "Możesz ją edytować, usunąć lub użyć jako wzór do stworzenia własnych zbiórek."
+msgstr "Możesz ją edytować, usunąć lub użyć jako wzór do stworzenia własnych zbiórek."
+
+#: lib/class.seeder.php
+msgid "Jak to działa?"
+msgstr "Jak to działa?"
+
+#: lib/class.seeder.php
+msgid "Ustaw cel i opis zbiórki"
+msgstr "Ustaw cel i opis zbiórki"
+
+#: lib/class.seeder.php
+msgid "Skonfiguruj bramkę płatności (PayPal, Przelewy24 lub płatność ręczna)"
+msgstr "Skonfiguruj bramkę płatności (PayPal, Przelewy24 lub płatność ręczna)"
+
+#: lib/class.seeder.php
+msgid "Opublikuj i udostępnij link do zbiórki"
+msgstr "Opublikuj i udostępnij link do zbiórki"
+
+#: lib/class.seeder.php
+msgid "WP Simple Donations — Przykładowe dane"
+msgstr "WP Simple Donations — Przykładowe dane"
+
+#: lib/class.seeder.php
+msgid "Seeder zbiórek"
+msgstr "Seeder zbiórek"
+
+#: lib/class.seeder.php
+msgid "Przykładowa zbiórka z wpłatami została utworzona."
+msgstr "Przykładowa zbiórka z wpłatami została utworzona."
+
+#: lib/class.seeder.php
+msgid "Kliknij przycisk poniżej, aby utworzyć przykładową zbiórkę z trzema testowymi wpłatami."
+msgstr "Kliknij przycisk poniżej, aby utworzyć przykładową zbiórkę z trzema testowymi wpłatami."
+
+#: lib/class.seeder.php
+msgid "Utwórz przykładową zbiórkę"
+msgstr "Utwórz przykładową zbiórkę"

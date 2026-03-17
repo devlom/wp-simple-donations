@@ -15,7 +15,7 @@ $tutorial->add_style('');
 $tutorial->set_capability = 'wdf_edit_settings';
 
 $tutorial->add_step(admin_url('admin.php?page=wdf'), 'funder_page_wdf', '#wdf-getting-started', __('Getting Started Is Easy', 'wdf'), array(
-		'content'  => '<p>' . esc_js( __('Follow these tutorial steps to get your Fundraising project up and running quickly.', 'wdf') ) . '</p>',
+		'content'  => '<p>' . esc_js( __('Follow these tutorial steps to get your donation project up and running quickly.', 'wdf') ) . '</p>',
 		'position' => array( 'edge' => 'top', 'align' => 'left' ),
 	));
 $tutorial->add_step(admin_url('edit.php?post_type=funder&page=wdf_settings&tab=payments'), 'funder_page_wdf_settings', '#wdf_settings_currency', __('Choose your currency', 'wdf'), array(
@@ -32,12 +32,12 @@ if(!get_option('permalink_structure')) {
 		'position' => array( 'edge' => 'top', 'align' => 'left' ),
 	));
 }
-$tutorial->add_step(admin_url('post-new.php?post_type=funder'), 'post-new.php', '#titlediv', __('Create your First Fundraiser', 'wdf'), array(
-	'content'  => '<p>' . esc_js( __('Now that you have setup your presentation and payment settings you can create your first fundraiser. Start by adding a title.', 'wdf') ) . '</p>',
+$tutorial->add_step(admin_url('post-new.php?post_type=funder'), 'post-new.php', '#titlediv', __('Create your First Campaign', 'wdf'), array(
+	'content'  => '<p>' . esc_js( __('Now that you have setup your presentation and payment settings you can create your first campaign. Start by adding a title.', 'wdf') ) . '</p>',
 	'position' => array( 'edge' => 'top', 'align' => 'left' ), 'post_type' => 'funder',
 ));
-$tutorial->add_step(admin_url('post-new.php?post_type=funder'), 'post-new.php', '#wdf_type', __('Choose a fundraising type', 'wdf'), array(
-	'content'  => '<p>' . esc_js( __('This step is crucial to how your fundraiser will operate.  Remember: Simple Donations process automatically but can not set goals or rewards.  Advanced Crowdfunding allows for goals and rewards but will only be approved until the goal has been reached.  After you save your fundraising type you will have additional options depending on your choice.  Enjoy!', 'wdf') ) . '</p>',
+$tutorial->add_step(admin_url('post-new.php?post_type=funder'), 'post-new.php', '#wdf_type', __('Choose a donation type', 'wdf'), array(
+	'content'  => '<p>' . esc_js( __('This step is crucial to how your campaign will operate.  Remember: Simple Donations process automatically but can not set goals or rewards.  Advanced Crowdfunding allows for goals and rewards but will only be approved until the goal has been reached.  After you save your donation type you will have additional options depending on your choice.  Enjoy!', 'wdf') ) . '</p>',
 	'position' => array( 'edge' => 'right', 'align' => 'left' ), 'post_type' => 'funder',
 ));
 /*$tutorial->add_step(admin_url('post-new.php?post_type=funder'), 'post-new.php', '#wdf_levels_table', __('Recommend Donation Levels', 'wdf'), array(

@@ -99,8 +99,8 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 									</tr>
 								</tbody>
 							</table>
-							<h3><?php _e('Fundraiser Labels','wdf'); ?></h3>
-							<span class="description"><?php _e('Each fundraising project will be labeled with these','wdf'); ?></span>
+							<h3><?php _e('Campaign Labels','wdf'); ?></h3>
+							<span class="description"><?php _e('Each donation campaign will be labeled with these','wdf'); ?></span>
 							<table class="form-table" id="wdf_label_settings">
 								<tbody>
 
@@ -126,7 +126,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 							</table>
 
 							<h3><?php _e('Pledge Labels','wdf'); ?></h3>
-							<span class="description"><?php _e('Any payment made towards a fundraiser will use this label','wdf'); ?></span>
+							<span class="description"><?php _e('Any payment made towards a campaign will use this label','wdf'); ?></span>
 							<table class="form-table" id="wdf_label_settings">
 								<tbody>
 									<?php /*?><tr valign="top">
@@ -164,7 +164,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 								</tbody>
 							</table>
 							<h3><?php _e('Checkout Presentation','wdf'); ?></h3>
-							<span class="description"><?php _e('An eloborated checkout page allows backers to view additional information about your fundraiser.  Checking out directly from the fundraising panel will begin the payment process immediately','wdf')?></span>
+							<span class="description"><?php _e('An elaborated checkout page allows backers to view additional information about your campaign.  Checking out directly from the donation panel will begin the payment process immediately','wdf')?></span>
 							<table class="form-table">
 								<tbody>
 									<tr valign="top">
@@ -180,7 +180,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 									</tr>
 									<tr valign="top">
 										<th scope="row">
-											<label><?php _e('Allow per fundraiser checkout types?','wdf'); ?></label>
+											<label><?php _e('Allow per campaign checkout types?','wdf'); ?></label>
 										</th>
 										<td>
 											<select name="wdf_settings[single_checkout_type]">
@@ -211,13 +211,13 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 
 									<tr valign="top">
 										<th scope="row">
-											<label><?php _e('Allow per fundraiser styles','wdf'); ?></label>
+											<label><?php _e('Allow per campaign styles','wdf'); ?></label>
 										</th>
 										<td>
 											<select name="wdf_settings[single_styles]">
 												<option value="no" <?php selected($settings['single_styles'],'no') ?>><?php _e('No','wdf'); ?></option>
 												<option value="yes" <?php selected($settings['single_styles'],'yes') ?>><?php _e('Yes','wdf'); ?></option>
-											</select><?php echo $tips->add_tip(__('Allowing this option will allow each fundraiser to override your site\'s default styles','wdf')); ?>
+											</select><?php echo $tips->add_tip(__('Allowing this option will allow each campaign to override your site\'s default styles','wdf')); ?>
 										</td>
 									</tr>
 
@@ -225,7 +225,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 
 									<tr valign="top">
 										<th scope="row">
-											<label><?php _e('Custom CSS','wdf'); ?></label><?php echo $tips->add_tip(__('CSS styles saved in this box will be loaded on any page containing fundraising content. Do not use '.esc_js('<style>').' tags in this box.','wdf')); ?>
+											<label><?php _e('Custom CSS','wdf'); ?></label><?php echo $tips->add_tip(__('CSS styles saved in this box will be loaded on any page containing donation content. Do not use '.esc_js('<style>').' tags in this box.','wdf')); ?>
 										</th>
 										<td>
 											<textarea rows="15" class="widefat" id="wdf_custom_css" name="wdf_settings[custom_css]"><?php echo esc_attr($settings['custom_css']); ?></textarea>
@@ -261,7 +261,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 
 									<tr valign="top">
 										<th scope="row">
-											<label><?php _e('Fundraising Permalink Structure','wdf'); ?></label>
+											<label><?php _e('Donation Permalink Structure','wdf'); ?></label>
 										</th>
 										<td>
 											<div class="error below-h2"><p><?php _e('You Need To Setup Your Permalink Structure Before Setting Your Donations Slugs','wdf'); ?></p></div>
@@ -290,7 +290,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 
 									<tr valign="top">
 										<th scope="row">
-											<label><?php _e('Fundraising Directory Location','wdf'); ?></label>
+											<label><?php _e('Donation Directory Location','wdf'); ?></label>
 										</th>
 										<td>
 											<span class="code"><?php echo home_url().$front_permlink; ?>/</span><input id="wdf_dir_slug" type="text" name="wdf_settings[dir_slug]" value="<?php echo esc_attr($settings['dir_slug']); ?>" />
@@ -302,7 +302,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 											<label><?php _e('Checkout Page','wdf'); ?></label>
 										</th>
 										<td>
-											<span class="code"><?php echo home_url().$front_permlink.'/'.$settings['dir_slug'].'/{'.__('The Fundraiser\'s Name','wdf').'}/'; ?></span><input id="wdf_checkout_slug" type="text" name="wdf_settings[checkout_slug]" value="<?php echo esc_attr($settings['checkout_slug']); ?>" />
+											<span class="code"><?php echo home_url().$front_permlink.'/'.$settings['dir_slug'].'/{'.__('The Campaign\'s Name','wdf').'}/'; ?></span><input id="wdf_checkout_slug" type="text" name="wdf_settings[checkout_slug]" value="<?php echo esc_attr($settings['checkout_slug']); ?>" />
 										</td>
 									</tr>
 
@@ -311,7 +311,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 											<label><?php _e('Thank You Page','wdf'); ?></label>
 										</th>
 										<td>
-											<span class="code"><?php echo home_url().$front_permlink.'/'.$settings['dir_slug'].'/{'.__('The Fundraiser\'s Name','wdf').'}/'; ?></span><input id="wdf_confirm_slug" type="text" name="wdf_settings[confirm_slug]" value="<?php echo esc_attr($settings['confirm_slug']); ?>" />
+											<span class="code"><?php echo home_url().$front_permlink.'/'.$settings['dir_slug'].'/{'.__('The Campaign\'s Name','wdf').'}/'; ?></span><input id="wdf_confirm_slug" type="text" name="wdf_settings[confirm_slug]" value="<?php echo esc_attr($settings['confirm_slug']); ?>" />
 										</td>
 									</tr>
 									<?php endif; ?>
@@ -323,7 +323,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 
 									<tr valign="top">
 										<th scope="row">
-											<label><?php _e('Add fundraising directory to menu?','wdf'); ?></label>
+											<label><?php _e('Add donation directory to menu?','wdf'); ?></label>
 										</th>
 										<td>
 											<select name="wdf_settings[inject_menu]">
@@ -340,7 +340,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 						case 'permissions' : ?>
 
 							<h3><?php _e('Permissions Settings','wdf'); ?></h3>
-							<p><?php _e('Controll access to fundraising features for every user role available in your WP installation. Administrator gets access to all of them by default.','wdf'); ?></p>
+							<p><?php _e('Control access to donation features for every user role available in your WP installation. Administrator gets access to all of them by default.','wdf'); ?></p>
 						<table id="wdf_permissions" class="widefat">
 							<thead>
 								<tr>
@@ -416,7 +416,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 									</tr>
 								</tbody>
 							</table>
-							<h3><?php _e('Allowed Fundraiser Types','wdf'); ?></h3>
+							<h3><?php _e('Allowed Donation Types','wdf'); ?></h3>
 
 							<table class="form-table">
 								<tbody>
@@ -516,7 +516,7 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 											</th>
 											<td>
 												<?php wp_nonce_field('wdf_reset_data', 'wdf_reset_nonce'); ?>
-												<input type="submit" class="button" name="wdf_reset" id="wdf_reset" value="Reset Data" />
+												<input type="submit" class="button" name="wdf_reset" id="wdf_reset" value="<?php esc_attr_e('Reset Data', 'wdf'); ?>" />
 											</td>
 										</tr>
 									</tbody>
@@ -533,12 +533,12 @@ if (!class_exists('WpmuDev_HelpTooltips')) require_once WDF_PLUGIN_BASE_DIR . '/
 					} ?>
 
 				</div>
-				<p class="submit"><input type="submit" value="Save Changes" class="button-primary" name="save_settings" /></p>
+				<p class="submit"><input type="submit" value="<?php esc_attr_e('Save Changes', 'wdf'); ?>" class="button-primary" name="save_settings" /></p>
 			</form>
 	<script type="text/javascript">
 		jQuery(document).ready( function($) {
 			$('#wdf_reset').click( function(e) {
-				var check = confirm("Are you sure you want to do this?  You will lose all the data associated with your fundraisers donations and settings!");
+				var check = confirm("<?php echo esc_js(__('Are you sure you want to do this? You will lose all the data associated with your donations and settings!', 'wdf')); ?>");
 				if (check == true)  {
 					return true;
 				} else {

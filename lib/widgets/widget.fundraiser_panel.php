@@ -130,7 +130,7 @@ class WDF_Fundraiser_Panel extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title','wdf') ?></label><br />
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Featured Fundraisers','wdf')); ?>" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Featured Campaigns','wdf')); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e('Extra Description','wdf') ?></label><br />
@@ -189,7 +189,7 @@ class WDF_Fundraiser_Panel extends WP_Widget {
 					<?php endforeach; ?>
 					</p>
 				<?php else : ?>
-					<div class="error below-h2"><p><?php _e('You have not created any fundraisers yet','wdf'); ?></p></div>
+					<div class="error below-h2"><p><?php _e('You have not created any campaigns yet','wdf'); ?></p></div>
 				<?php endif; ?>
 		</div>
 		<?php

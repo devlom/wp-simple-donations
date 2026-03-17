@@ -73,7 +73,7 @@ class WDF_Pledges_Panel extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title','wdf'); ?></label><br />
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Recent Fundraisers','wdf')); ?>" />
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" type="text" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Recent Campaigns','wdf')); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'number_pledges' ); ?>"><?php printf(__('Number of %s to show','wdf'),esc_attr($settings['donation_labels']['singular_name']) ); ?></label>
@@ -113,7 +113,7 @@ class WDF_Pledges_Panel extends WP_Widget {
 					<?php endforeach; ?>
 				</p>
 				<?php else : ?>
-				<div class="error below-h2"><p><?php _e('You have not created any fundraisers yet','wdf'); ?></p></div>
+				<div class="error below-h2"><p><?php _e('You have not created any campaigns yet','wdf'); ?></p></div>
 				<?php endif; ?>
 		</div>
 		<?php

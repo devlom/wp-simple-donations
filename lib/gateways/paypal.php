@@ -138,7 +138,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
 						$nvp .= '&a3='.$_SESSION['wdf_pledge'];
 						$nvp .= '&p3=1';
 						$nvp .= '&t3='.$_SESSION['wdf_recurring'];
-						$nvp .= '&bn=WPMUDonations_Subscribe_WPS_'.$settings['currency'];
+						$nvp .= '&bn=WPSimpleDonations_Subscribe_WPS_'.$settings['currency'];
 						$nvp .= '&src=1';
 						$nvp .= '&sra=1';
 						$nvp .= '&modify=1';
@@ -149,7 +149,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
 						$nvp = 'cmd=_donations';
 						$nvp .= '&amount='.urlencode($_SESSION['wdf_pledge']);
 						$nvp .= '&cbt='.urlencode( isset($settings['paypal_return_text']) ? $settings['paypal_return_text'] : __('Click Here To Complete Your Donation', 'wdf') );
-						$nvp .= '&bn=WPMUDonations_Donate_WPS_'.$settings['currency'];
+						$nvp .= '&bn=WPSimpleDonations_Donate_WPS_'.$settings['currency'];
 					}
 					$nvp .= '&no_shipping=1';
 					$nvp .= '&business='.urlencode($settings['paypal_email']);
@@ -170,7 +170,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
 
 				} else {
 					//No $_SESSION['funder_id'] was passed to this function.
-					$this->create_gateway_error(__('Could not determine fundraiser','wdf'));
+					$this->create_gateway_error(__('Could not determine campaign','wdf'));
 				}
 			} else {
 				$_POST['wdf_step'] = 'gateway';
@@ -299,7 +299,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
 				'X-PAYPAL-REQUEST-RESPONSE-FORMAT' => 'NV',
 				'X-PAYPAL-APPLICATION-ID' => $this->appId
 			);
-			$args['user-agent'] = "Fundraising/{$wdf->version}: http://premium.wpmudev.org/project/fundraising/ | PayPal Adaptive Payments Plugin/{$wdf->version}";
+			$args['user-agent'] = "WP Simple Donations/{$wdf->version}: http://wpsimpledonations.com/ | PayPal Adaptive Payments Plugin/{$wdf->version}";
 			$args['body'] = $nvpStr . '&requestEnvelope.errorLanguage=en_US';
 			$args['sslverify'] = true;
 			$args['timeout'] = 60;
@@ -644,7 +644,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
             $req = 'cmd=_notify-validate&' . file_get_contents("php://input");
 
 			$args = array();
-			$args['user-agent'] = "Fundraising/{$wdf->version}: http://premium.wpmudev.org/project/fundraising/";
+			$args['user-agent'] = "WP Simple Donations/{$wdf->version}: http://wpsimpledonations.com/";
 			$args['body'] = $req;
 			$args['sslverify'] = true;
 			$args['timeout'] = 60;
@@ -684,7 +684,7 @@ if(!class_exists('WDF_Gateway_PayPal')) {
 					<td colspan="2">
 						<h4><?php _e('Simple Payment Options (Simple Donations)','wdf'); ?></h4>
 						<div class="message updated below-h2" style="width: auto;">
-                            <p><?php _e('In order for Fundraising to function correctly you must setup an IPN listening URL with PayPal. Failure to do so will prevent your site from being notified when a recurring payment is cancelled.','wdf'); ?>
+                            <p><?php _e('In order for WP Simple Donations to function correctly you must setup an IPN listening URL with PayPal. Failure to do so will prevent your site from being notified when a recurring payment is cancelled.','wdf'); ?>
                                 <br /><?php echo __( 'Your IPN listening URL is:', 'wdf' ); ?>
                                 <span class="description"><?php echo $this->ipn_url; ?></span> <br />
                                 <a href="<?php echo __( 'https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNSetup/', 'wdf' ); ?>"><?php echo __( 'Instructions &raquo;', 'wdf' ); ?></a>

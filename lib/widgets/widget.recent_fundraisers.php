@@ -47,11 +47,11 @@ class WDF_Recent_Fundraisers extends WP_Widget {
 	function form( $instance ) {		
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>">Title</label>
-			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Recent Fundraisers','wdf')); ?>" />
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'wdf'); ?></label>
+			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo (isset($instance['title']) ? $instance['title'] : __('Recent Campaigns','wdf')); ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'numberposts' ); ?>">Number of Fundraisers to show:</label>
+		<label for="<?php echo $this->get_field_id( 'numberposts' ); ?>"><?php _e('Number of campaigns to show:', 'wdf'); ?></label>
 			<input id="<?php echo $this->get_field_id( 'numberposts' ); ?>" type="text" size="3" name="<?php echo $this->get_field_name('numberposts'); ?>" value="<?php echo (isset($instance['numberposts']) ? $instance['numberposts'] : ''); ?>" />
 		</p>
 		<?php

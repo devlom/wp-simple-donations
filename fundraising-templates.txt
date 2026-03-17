@@ -1,27 +1,27 @@
-You can create new files inside your active theme's root folder to be used when displaying a fundraiser.
+You can create new files inside your active theme's root folder to be used when displaying a donation campaign.
 
 There are 3 types of templates you can create.
 
 Template Hierarchy
 
-Single Fundraiser
+Single Campaign
 wdf_funder-{ID}.php
 wdf_funder-{slug}.php
 wdf_funder.php
  
-Fundraiser Checkout
+Campaign Checkout
 wdf_checkout-{ID}.php
 wdf_checkout-{slug}.php
 wdf_checkout.php
 
-Fundraiser Confirmation Page
+Campaign Confirmation Page
 wdf_confirm-{ID}.php
 wdf_confirm-{slug}.php
 wdf_confirm.php
 
 
 == Custom Template Functions ==
-You can change the location of the template-functions that are loaded in fundraising to an external location.
+You can change the location of the template-functions that are loaded in WP Simple Donations to an external location.
 This will insure that any custom changes you make to your template functions are not broken when updating the plugin in the future.
 
 Add a new define statement in your wp-config.php file containing a string pointing to the location.
@@ -29,7 +29,7 @@ define('WDF_CUSTOM_TEMPLATE_FUNCTIONS','/full-server-path/and/filename.php');
 
 
 == Custom Styles ==
-Add any CSS file to your fundraising /styles/ folder for it to be available in your settings.
+Add any CSS file to your plugin's /styles/ folder for it to be available in your settings.
 
 You can also create a folder named "wdf-styles" in your wp-content folder 
 OR 

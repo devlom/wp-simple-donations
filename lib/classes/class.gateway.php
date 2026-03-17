@@ -63,7 +63,9 @@ if(!class_exists('WDF_Gateway')) {
 		}
 		function _payment_form_wrapper($content) {
 			global $wdf;
-			$pre = '<div class="wdf_payment_summary">';
+			$style = isset($_SESSION['funder_id']) ? wdf_get_style($_SESSION['funder_id']) : 'wdf-default';
+			$pre = '<div class="wdf_gateway_wrapper ' . esc_attr($style) . '">';
+			$pre .= '<div class="wdf_payment_summary">';
 			$pre .= sprintf( '<h4>'.__('Your pledge of %s is almost complete.','wdf').'</h4>',$wdf->format_currency('',$_SESSION['wdf_pledge']) /*. ' ' .($_SESSION['wdf_recurring'] != '0' ? 'every ' . $_SESSION['wdf_recurring'] : '')*/ );
 			if(isset($wdf->wdf_error) && $wdf->wdf_error == true) {
 				$pre .= apply_filters('wdf_error_gateway','');
@@ -72,14 +74,7 @@ if(!class_exists('WDF_Gateway')) {
 
 			$new = apply_filters('wdf_pre_payment_form',$pre);
 			
-			if ($_SESSION['wdf_gateway'] == 'dotpay') {
-				$settings = get_option('wdf_settings');
-                if (isset($settings['dotpay_sb']) && $settings['dotpay_sb'] == 'yes') {
-                    $new .= '<form id="dotpay" action="'.$settings['dotpay']['advanced']['app_url_test'].'" method="post">';
-                } else if(isset($settings['dotpay_sb']) && $settings['dotpay_sb'] == 'no') {
-					$new .= '<form id="dotpay" action="'.$settings['dotpay']['advanced']['app_url'].'" method="post">';
-				}
-			} elseif ($_SESSION['wdf_gateway'] == 'przelewy24') {
+			if ($_SESSION['wdf_gateway'] == 'przelewy24') {
 				$new .= '<form id="przelewy24" action="" method="post">';
 			} else {
 				$new .= '<form action="" method="post">';
@@ -89,6 +84,7 @@ if(!class_exists('WDF_Gateway')) {
 
 			$new .= '<input class="button" type="submit" name="wdf_payment_submit" value="'.__('Complete Pledge','wdf').'" />';
 			$new .= '</form>';
+			$new .= '</div>'; // .wdf_gateway_wrapper
 
 			return $new;
 		}

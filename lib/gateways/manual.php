@@ -128,7 +128,7 @@ if(!class_exists('WDF_Gateway_Manual')) {
 				} else {
 					$_POST['wdf_step'] = 'gateway';
 					//No $_SESSION['funder_id'] was passed to this function.
-					$this->create_gateway_error(__('Could not determine fundraiser','wdf'));
+					$this->create_gateway_error(__('Could not determine campaign','wdf'));
 				}
 			} else {
 				$_POST['wdf_step'] = 'gateway';

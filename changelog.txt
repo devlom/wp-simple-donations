@@ -1,9 +1,27 @@
-Plugin Name: Fundraising
-Author: WPMUDEV
-Lead developer: Maniu
-Contributors: Cole Stevenson, Jose Jaureguiberry
+Plugin Name: WP Simple Donations
+Author: Karol Orzeł / Devlom
+Original authors: WPMUDEV (Maniu, Cole Stevenson, Jose Jaureguiberry)
 
 == Changelog ==
+
+= 2.6.6 =
+New modern CSS style system — replaced 5 legacy themes (basic, dark, fresh, minimal, note) with single responsive wdf-default style using CSS custom properties, flexbox layout, and card-based design
+Removed Dotpay payment gateway (service no longer exists)
+Added payment flow validation — required fields (name, email, amount, privacy policy), gateway availability checks, and proper error messages at each step
+Added admin notice when no payment gateway is active
+Added JS click handler for donation submit buttons
+Added style wrapper to gateway payment form (checkout step 2)
+Fixed potential PHP crash when selected gateway not in active plugins
+Auto-migration: old CSS themes → wdf-default, per-fundraiser style meta, Dotpay removal from settings
+
+= 2.6.5 =
+Rebranded from WPMU DEV Fundraising to WP Simple Donations
+Updated plugin header, author, and URIs
+Updated all user-facing strings (Fundraiser → Donation/Campaign)
+Updated PayPal gateway identifiers and User-Agent strings
+Updated translation files (PO/MO)
+
+--- Forked from WPMU DEV Fundraising (v2.6.4.9) ---
 
 = 2.6.4.9 =
 Fixed remaining deprecated constructors

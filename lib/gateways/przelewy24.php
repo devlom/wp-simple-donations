@@ -263,7 +263,7 @@ if (!class_exists('WDF_Gateway_Przelewy24')) {
 					}
 				} else {
 					$_POST['wdf_step'] = 'gateway';
-					$this->create_gateway_error(__('Could not determine fundraiser', 'wdf'));
+					$this->create_gateway_error(__('Could not determine campaign', 'wdf'));
 				}
 			} else {
 				$_POST['wdf_step'] = 'gateway';

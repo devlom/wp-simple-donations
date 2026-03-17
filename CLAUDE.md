@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress Fundraising plugin — a fork of the archived WPMU DEV plugin (v2.6.4.9), modernized for PHP 8.3+. Crowdfunding and donation plugin supporting simple donations with recurring payments, advanced crowdfunding with goals/rewards, PayPal/Manual/Przelewy24 gateways, multisite support, and Polish localization.
+WP Simple Donations — a WordPress crowdfunding and donation plugin, forked from the archived WPMU DEV Fundraising plugin (v2.6.4.9), modernized for PHP 8.3+ and rebranded by Karol Orzeł / Devlom. Supports simple donations with recurring payments, advanced crowdfunding with goals/rewards, PayPal/Manual/Przelewy24 gateways, multisite support, and Polish localization.
 
 **Text domain:** `wdf` (all translatable strings use `__('...', 'wdf')` / `_e('...', 'wdf')`)
 
@@ -23,7 +23,7 @@ msgfmt -o languages/wdf-pl_PL.mo languages/wdf-pl_PL.po
 
 ### Core Class & Entry Point
 
-`fundraiser.php` — Contains the main `WDF` class (~2,260 lines), a singleton loaded on `plugins_loaded`. Handles post type registration, rewrite rules, admin meta boxes, payment processing, template routing, and asset enqueueing. This is the central hub of the plugin.
+`wp-simple-donations.php` — Contains the main `WDF` class (~2,260 lines), a singleton loaded on `plugins_loaded`. Handles post type registration, rewrite rules, admin meta boxes, payment processing, template routing, and asset enqueueing. This is the central hub of the plugin.
 
 ### Custom Post Types
 
@@ -37,7 +37,6 @@ Abstract base: `lib/classes/class.gateway.php` (`WDF_Gateway`). Implementations 
 - `przelewy24.php` — Przelewy24 REST API v1 (primary gateway for Polish payments). Uses Basic Auth (posId:apiKey), SHA-384 signatures with CRC key. Flow: register transaction → redirect to P24 → IPN notification → verify. Stores inter-step data in WP transients (`wdf_p24_{session_id}`).
 - `paypal.php` — PayPal Adaptive Payments + IPN
 - `manual.php` — Offline/manual processing
-- `dotpay.php` — Dotpay (deprecated, kept for historical transaction records only)
 
 Gateways are loaded dynamically. Payment processing fires action hooks: `wdf_gateway_process_{type}_{gateway}`. State is managed via `$_SESSION` variables (`funder_id`, `wdf_pledge`, `wdf_gateway`, `wdf_recurring`, etc.).
 
@@ -48,7 +47,7 @@ Gateways are loaded dynamically. Payment processing fires action hooks: `wdf_gat
 - `lib/gateways/` — Payment gateway implementations
 - `lib/classes/` — Base classes (gateway abstract)
 - `lib/external/` — Third-party libraries
-- `styles/` — Pre-built CSS themes (basic, dark, fresh, minimal, note)
+- `styles/` — CSS themes (`wdf-default.css` — modern responsive style with CSS custom properties)
 - `js/` — Frontend and admin jQuery scripts (no build step)
 - `languages/` — Translations (pl_PL complete, en_US base)
 
@@ -92,3 +91,5 @@ Stored in `wp_options` as `wdf_settings`. Defaults defined in `WDF::_vars()`.
 - **Phase 1** — PHP 8.3+ compatibility
 - **Phase 2** — Security hardening (nonces, sanitization, escaping)
 - **Phase 3** — Przelewy24 payment gateway
+- **Phase 4** — Rebranding from WPMU DEV Fundraising to WP Simple Donations (user-facing strings only; internal identifiers preserved)
+- **Phase 5** — New CSS style system (single modern `wdf-default` theme replacing 5 legacy themes), Dotpay removal, payment flow validation and error handling
