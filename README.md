@@ -39,7 +39,8 @@
 | Gateway | Description |
 |---------|-------------|
 | **Przelewy24** | Polish payment gateway — REST API v1, sandbox & live modes |
-| **PayPal** | Adaptive Payments with IPN |
+| **PayU** | Polish payment gateway — REST API v2.1, OAuth2, webhook notifications |
+| **PayPal** | REST API Orders v2 + JS SDK — popup checkout, no redirect |
 | **Manual** | Offline/manual payment processing |
 
 ## Requirements
