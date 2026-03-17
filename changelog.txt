@@ -5,6 +5,7 @@ Original authors: WPMUDEV (Maniu, Cole Stevenson, Jose Jaureguiberry)
 == Changelog ==
 
 = 2.6.6 =
+Added idempotency protection for P24 and PayU webhook notifications — prevents duplicate pledge creation on repeated notifications
 Streamlined payment flow — one-step checkout, donor data collected once on panel form and passed via session to all gateways (no redundant second form)
 Dedicated buttons per payment gateway — each gateway has its own styled button instead of radio button selection (P24 red, PayU green, PayPal gold SDK, Manual subtle)
 Added PayU payment gateway — REST API v2.1, OAuth2 authentication, MD5 webhook signature verification, sandbox/live toggle

@@ -287,6 +287,15 @@ if (!class_exists('WDF_Gateway_PayU')) {
 				exit;
 			}
 
+			// Idempotency: prevent duplicate processing via atomic lock
+			$lock_key = 'wdf_payu_lock_' . $payu_order_id;
+			if (get_transient($lock_key)) {
+				error_log('WDF PayU: Duplicate notification ignored for order ' . $payu_order_id);
+				status_header(200);
+				exit;
+			}
+			set_transient($lock_key, 1, 300); // 5 min lock
+
 			// Retrieve stored data
 			$stored = get_transient('wdf_payu_' . $payu_order_id);
 			if (!$stored) {

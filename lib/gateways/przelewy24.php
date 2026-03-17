@@ -252,13 +252,21 @@ if (!class_exists('WDF_Gateway_Przelewy24')) {
 
 			if (empty($data) || !isset($data['sessionId']) || !isset($data['orderId'])) {
 				status_header(400);
-				echo 'Invalid notification data';
 				exit;
 			}
 
 			$session_id = sanitize_text_field($data['sessionId']);
 			$order_id = absint($data['orderId']);
 			$amount = absint($data['amount']);
+
+			// Idempotency: prevent duplicate processing via atomic lock
+			$lock_key = 'wdf_p24_lock_' . $order_id;
+			if (get_transient($lock_key)) {
+				error_log('WDF P24: Duplicate notification ignored for order ' . $order_id);
+				status_header(200);
+				exit;
+			}
+			set_transient($lock_key, 1, 300); // 5 min lock
 			$currency = sanitize_text_field($data['currency']);
 			$p24_sign = isset($data['sign']) ? sanitize_text_field($data['sign']) : '';
 
@@ -336,11 +344,11 @@ if (!class_exists('WDF_Gateway_Przelewy24')) {
 			$status = 'wdf_complete';
 			$wdf->update_pledge($stored['pledge_id'], $stored['funder_id'], $status, $transaction);
 
-			// Clean up transient
+			// Clean up
 			delete_transient('wdf_p24_' . $session_id);
+			// Keep lock active to reject further duplicates
 
 			status_header(200);
-			echo 'OK';
 			exit;
 		}
 
