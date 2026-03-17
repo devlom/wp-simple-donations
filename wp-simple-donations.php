@@ -878,6 +878,8 @@ class WDF {
 		unset($_SESSION['wdf_type']);
 		unset($_SESSION['wdf_pledge_id']);
 		unset($_SESSION['wdf_sender_email']);
+		unset($_SESSION['wdf_first_name']);
+		unset($_SESSION['wdf_last_name']);
 		unset($_SESSION['wdf_recurring']);
 		unset($_SESSION['wdf_reward']);
 
@@ -915,6 +917,8 @@ class WDF {
 			$_SESSION['funder_id'] = absint($_POST['funder_id']);
 			$_SESSION['wdf_type'] = $this->get_payment_type(absint($_POST['funder_id']));
 			$_SESSION['wdf_sender_email'] = sanitize_email($_POST['e-mail']);
+			$_SESSION['wdf_first_name'] = sanitize_text_field($_POST['firstname']);
+			$_SESSION['wdf_last_name'] = sanitize_text_field($_POST['lastname']);
 		}
 		if( isset($_POST['wdf_pledge']) && !empty($_POST['wdf_pledge']) )
 			$_SESSION['wdf_pledge'] = $this->filter_price($_POST['wdf_pledge']);

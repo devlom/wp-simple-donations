@@ -20,7 +20,7 @@ if (!class_exists('WDF_Gateway_Przelewy24')) {
 		public $payment_types = 'simple';
 
 		// If you are redirecting to a 3rd party make sure this is set to true
-		public $skip_form = false;
+		public $skip_form = true;
 
 		// Allow recurring payments with your gateway
 		public $allow_reccuring = false;
@@ -48,41 +48,8 @@ if (!class_exists('WDF_Gateway_Przelewy24')) {
 		}
 
 		public function payment_form() {
-			$content = '<div class="wdf_p24_payment_form wdf_payment_form">';
-			$content .= '<p class="wdf_p24_payment_form_basic_message wdf_payment_form_basic_message">' . __('Please fill out all details', 'wdf') . '</p>';
-
-			$content .= '<p class="wdf_p24_payment_form_basic_info wdf_payment_form_basic_info">';
-			$content .= '<label for="first_name" class="wdf_first_name">' . __('First Name', 'wdf') . ':</label><br />';
-			$content .= '<input type="text" class="wdf_first_name" name="first_name" value="' . (isset($_POST['first_name']) ? esc_attr($_POST['first_name']) : '') . '" /><br />';
-			$content .= '<label for="last_name" class="wdf_last_name">' . __('Last Name', 'wdf') . ':</label><br />';
-			$content .= '<input type="text" class="wdf_last_name" name="last_name" value="' . (isset($_POST['last_name']) ? esc_attr($_POST['last_name']) : '') . '" /><br />';
-			$content .= '<label for="e-mail" class="wdf_email">' . __('E-mail', 'wdf') . ':</label><br />';
-			$content .= '<input type="text" class="wdf_email" name="e-mail" value="' . (isset($_POST['e-mail']) ? esc_attr($_POST['e-mail']) : '') . '" />';
-			$content .= '</p>';
-
-			$funder_id = get_the_ID();
-			if (get_post_meta($funder_id, 'wdf_collect_address', true)) {
-				$collect_address_message = get_post_meta($funder_id, 'wdf_collect_address_message', true);
-				if ($collect_address_message)
-					$content .= '<p class="wdf_p24_payment_form_address_message wdf_payment_form_address_message">' . $collect_address_message . '</p>';
-
-				$content .= '<p class="wdf_p24_payment_form_address_info wdf_payment_form_address_info">';
-				$collect_address_country = get_post_meta($funder_id, 'wdf_collect_address_country', true);
-				if ($collect_address_country) {
-					$content .= '<label for="country" class="wdf_country">' . __('Country', 'wdf') . ':</label><br />';
-					$content .= '<input type="text" class="wdf_country" name="country" value="' . (isset($_POST['country']) ? esc_attr($_POST['country']) : '') . '" /><br />';
-				}
-				$content .= '<label for="address1" class="wdf_address1">' . __('Address', 'wdf') . ':</label><br />';
-				$content .= '<input type="text" class="wdf_address1" name="address1" value="' . (isset($_POST['address1']) ? esc_attr($_POST['address1']) : '') . '" /><br />';
-				$content .= '<label for="city" class="wdf_city">' . __('City', 'wdf') . ':</label><br />';
-				$content .= '<input type="text" class="wdf_city" name="city" value="' . (isset($_POST['city']) ? esc_attr($_POST['city']) : '') . '" /><br />';
-				$content .= '<label for="zip" class="wdf_zip">' . __('Postal/Zip Code', 'wdf') . ':</label><br />';
-				$content .= '<input type="text" class="wdf_zip" name="zip" value="' . (isset($_POST['zip']) ? esc_attr($_POST['zip']) : '') . '" />';
-				$content .= '</p>';
-			}
-
-			$content .= '</div>';
-			return $content;
+			// skip_form = true — donor data collected on panel, no separate gateway form needed
+			return '';
 		}
 
 		/**
@@ -174,100 +141,93 @@ if (!class_exists('WDF_Gateway_Przelewy24')) {
 		}
 
 		public function process_simple() {
-			if (
-				!empty($_POST['first_name']) && !empty($_POST['last_name']) &&
-				!empty($_POST['e-mail']) && is_email($_POST['e-mail']) &&
-				((isset($_POST['city']) && !empty($_POST['address1']) && !empty($_POST['city'])) || !isset($_POST['city'])) &&
-				((isset($_POST['country']) && !empty($_POST['country'])) || !isset($_POST['country']))
-			) {
-				global $wdf;
-				$settings = get_option('wdf_settings');
-				$funder_id = $_SESSION['funder_id'];
+			// Read donor data from session (collected on the panel form)
+			$first_name = isset($_SESSION['wdf_first_name']) ? $_SESSION['wdf_first_name'] : '';
+			$last_name  = isset($_SESSION['wdf_last_name']) ? $_SESSION['wdf_last_name'] : '';
+			$email      = isset($_SESSION['wdf_sender_email']) ? $_SESSION['wdf_sender_email'] : '';
 
-				if ($funder = get_post($funder_id)) {
-					$pledge_id = $wdf->generate_pledge_id();
-					$_SESSION['wdf_pledge_id'] = $pledge_id;
+			if (empty($first_name) || empty($last_name) || !is_email($email)) {
+				$this->create_gateway_error(__('Missing donor data. Please go back and fill in the form.', 'wdf'));
+				return;
+			}
 
-					$currency = isset($settings['p24_currency']) ? $settings['p24_currency'] : 'PLN';
-					$amount_float = floatval($_SESSION['wdf_pledge']);
-					$amount_gr = (int) round($amount_float * 100); // P24 expects amount in grosz (1/100)
+			global $wdf;
+			$settings = get_option('wdf_settings');
+			$funder_id = $_SESSION['funder_id'];
 
-					$session_id = 'wdf_' . $pledge_id . '_' . time();
-					$this->return_url = add_query_arg('pledge_id', $pledge_id, wdf_get_funder_page('confirmation', $funder->ID));
+			if (!$funder = get_post($funder_id)) {
+				$this->create_gateway_error(__('Could not determine campaign.', 'wdf'));
+				return;
+			}
 
-					$sign = $this->calculate_register_sign($session_id, $this->merchant_id, $amount_gr, $currency);
+			$pledge_id = $wdf->generate_pledge_id();
+			$_SESSION['wdf_pledge_id'] = $pledge_id;
 
-					$description = sprintf(
-						__('Donation: %s', 'wdf'),
-						$funder->post_title
-					);
+			$currency = isset($settings['p24_currency']) ? $settings['p24_currency'] : 'PLN';
+			$amount_float = floatval($_SESSION['wdf_pledge']);
+			$amount_gr = (int) round($amount_float * 100);
 
-					$register_body = array(
-						'merchantId' => (int) $this->merchant_id,
-						'posId' => (int) $this->pos_id,
-						'sessionId' => $session_id,
-						'amount' => $amount_gr,
-						'currency' => $currency,
-						'description' => mb_substr($description, 0, 1024),
-						'email' => sanitize_email($_POST['e-mail']),
-						'country' => 'PL',
-						'language' => 'pl',
-						'urlReturn' => $this->return_url,
-						'urlStatus' => $this->ipn_url,
-						'sign' => $sign,
-					);
+			$session_id = 'wdf_' . $pledge_id . '_' . time();
+			$this->return_url = add_query_arg(
+				array('pledge_id' => $pledge_id, 'status' => 'OK'),
+				wdf_get_funder_page('confirmation', $funder->ID)
+			);
 
-					$response = $this->api_call('/api/v1/transaction/register', $register_body);
+			$sign = $this->calculate_register_sign($session_id, $this->merchant_id, $amount_gr, $currency);
 
-					if (is_wp_error($response)) {
-						$this->create_gateway_error(
-							__('Error connecting to Przelewy24: ', 'wdf') . $response->get_error_message()
-						);
-						return;
-					}
+			$description = sprintf(__('Donation: %s', 'wdf'), $funder->post_title);
 
-					if (!isset($response['data']['token'])) {
-						$this->create_gateway_error(__('Przelewy24 did not return a transaction token.', 'wdf'));
-						return;
-					}
+			$register_body = array(
+				'merchantId' => (int) $this->merchant_id,
+				'posId'      => (int) $this->pos_id,
+				'sessionId'  => $session_id,
+				'amount'     => $amount_gr,
+				'currency'   => $currency,
+				'description' => mb_substr($description, 0, 1024),
+				'email'      => $email,
+				'country'    => 'PL',
+				'language'   => 'pl',
+				'urlReturn'  => $this->return_url,
+				'urlStatus'  => $this->ipn_url,
+				'sign'       => $sign,
+			);
 
-					$token = $response['data']['token'];
+			$response = $this->api_call('/api/v1/transaction/register', $register_body);
 
-					// Store transaction data in transient for IPN processing
-					$transient_data = array(
-						'pledge_id' => $pledge_id,
-						'funder_id' => $funder_id,
-						'session_id' => $session_id,
-						'amount' => $amount_gr,
-						'currency' => $currency,
-						'first_name' => sanitize_text_field($_POST['first_name']),
-						'last_name' => sanitize_text_field($_POST['last_name']),
-						'payer_email' => sanitize_email($_POST['e-mail']),
-						'reward' => isset($_SESSION['wdf_reward']) ? $_SESSION['wdf_reward'] : '0',
-					);
+			if (is_wp_error($response)) {
+				error_log('WDF P24 register error: ' . $response->get_error_message());
+				$this->create_gateway_error(
+					__('Error connecting to Przelewy24. Please try again.', 'wdf')
+				);
+				return;
+			}
 
-					// Collect address if present
-					if (isset($_POST['country'])) $transient_data['country'] = sanitize_text_field($_POST['country']);
-					if (isset($_POST['address1'])) $transient_data['address1'] = sanitize_text_field($_POST['address1']);
-					if (isset($_POST['city'])) $transient_data['city'] = sanitize_text_field($_POST['city']);
-					if (isset($_POST['zip'])) $transient_data['zip'] = sanitize_text_field($_POST['zip']);
+			if (!isset($response['data']['token'])) {
+				error_log('WDF P24 register: no token returned. Response: ' . wp_json_encode($response));
+				$this->create_gateway_error(__('Przelewy24 did not return a transaction token.', 'wdf'));
+				return;
+			}
 
-					// Store for 24 hours
-					set_transient('wdf_p24_' . $session_id, $transient_data, DAY_IN_SECONDS);
+			$token = $response['data']['token'];
 
-					// Redirect to P24 payment page
-					$redirect_url = $this->api_url . '/trnRequest/' . $token;
-					if (!headers_sent()) {
-						wp_redirect($redirect_url);
-						exit;
-					}
-				} else {
-					$_POST['wdf_step'] = 'gateway';
-					$this->create_gateway_error(__('Could not determine campaign', 'wdf'));
-				}
-			} else {
-				$_POST['wdf_step'] = 'gateway';
-				$this->create_gateway_error(__('Make sure all details are filled out correctly.', 'wdf'));
+			// Store transaction data in transient for IPN processing
+			set_transient('wdf_p24_' . $session_id, array(
+				'pledge_id'   => $pledge_id,
+				'funder_id'   => $funder_id,
+				'session_id'  => $session_id,
+				'amount'      => $amount_gr,
+				'currency'    => $currency,
+				'first_name'  => $first_name,
+				'last_name'   => $last_name,
+				'payer_email' => $email,
+				'reward'      => isset($_SESSION['wdf_reward']) ? $_SESSION['wdf_reward'] : '0',
+			), DAY_IN_SECONDS);
+
+			// Redirect to P24 payment page
+			$redirect_url = $this->api_url . '/trnRequest/' . $token;
+			if (!headers_sent()) {
+				wp_redirect($redirect_url);
+				exit;
 			}
 		}
 

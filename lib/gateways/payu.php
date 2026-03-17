@@ -9,7 +9,7 @@ if (!class_exists('WDF_Gateway_PayU')) {
 		public $public_name = '';
 		public $force_ssl = false;
 		public $payment_types = 'simple';
-		public $skip_form = false;
+		public $skip_form = true;
 		public $allow_reccuring = false;
 
 		private $api_url = '';
@@ -144,31 +144,20 @@ if (!class_exists('WDF_Gateway_PayU')) {
 		// ── Payment Form ──────────────────────────────────────────
 
 		public function payment_form() {
-			$content = '<div class="wdf_payu_payment_form wdf_payment_form">';
-			$content .= '<p class="wdf_payu_payment_form_basic_message wdf_payment_form_basic_message">' . __('Please fill out all details', 'wdf') . '</p>';
-
-			$content .= '<p class="wdf_payu_payment_form_basic_info wdf_payment_form_basic_info">';
-			$content .= '<label for="payu_first_name" class="wdf_first_name">' . __('First Name', 'wdf') . ':</label><br />';
-			$content .= '<input type="text" class="wdf_first_name" id="payu_first_name" name="first_name" value="' . (isset($_POST['first_name']) ? esc_attr($_POST['first_name']) : '') . '" /><br />';
-			$content .= '<label for="payu_last_name" class="wdf_last_name">' . __('Last Name', 'wdf') . ':</label><br />';
-			$content .= '<input type="text" class="wdf_last_name" id="payu_last_name" name="last_name" value="' . (isset($_POST['last_name']) ? esc_attr($_POST['last_name']) : '') . '" /><br />';
-			$content .= '<label for="payu_email" class="wdf_email">' . __('E-mail', 'wdf') . ':</label><br />';
-			$content .= '<input type="email" class="wdf_email" id="payu_email" name="e-mail" value="' . (isset($_POST['e-mail']) ? esc_attr($_POST['e-mail']) : '') . '" />';
-			$content .= '</p>';
-
-			$content .= '</div>';
-			return $content;
+			// skip_form = true — donor data collected on panel, no separate gateway form needed
+			return '';
 		}
 
 		// ── Process Payment ───────────────────────────────────────
 
 		public function process_simple() {
-			if (
-				empty($_POST['first_name']) || empty($_POST['last_name']) ||
-				empty($_POST['e-mail']) || !is_email($_POST['e-mail'])
-			) {
-				$_POST['wdf_step'] = 'gateway';
-				$this->create_gateway_error(__('Make sure all details are filled out correctly.', 'wdf'));
+			// Read donor data from session (collected on the panel form)
+			$first_name = isset($_SESSION['wdf_first_name']) ? $_SESSION['wdf_first_name'] : '';
+			$last_name  = isset($_SESSION['wdf_last_name']) ? $_SESSION['wdf_last_name'] : '';
+			$email      = isset($_SESSION['wdf_sender_email']) ? $_SESSION['wdf_sender_email'] : '';
+
+			if (empty($first_name) || empty($last_name) || !is_email($email)) {
+				$this->create_gateway_error(__('Missing donor data. Please go back and fill in the form.', 'wdf'));
 				return;
 			}
 
@@ -187,11 +176,7 @@ if (!class_exists('WDF_Gateway_PayU')) {
 
 			$currency     = isset($settings['currency']) ? $settings['currency'] : 'PLN';
 			$amount_float = floatval($_SESSION['wdf_pledge']);
-			$amount_cents = (int) round($amount_float * 100); // PayU expects lowest currency unit
-
-			$first_name = sanitize_text_field($_POST['first_name']);
-			$last_name  = sanitize_text_field($_POST['last_name']);
-			$email      = sanitize_email($_POST['e-mail']);
+			$amount_cents = (int) round($amount_float * 100);
 
 			$this->return_url = add_query_arg(
 				array('pledge_id' => $pledge_id, 'status' => 'OK'),
